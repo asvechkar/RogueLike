@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 6552249305199612778}
   - component: {fileID: 2234405127502034266}
   - component: {fileID: 1213141423188203234}
-  m_Layer: 0
+  - component: {fileID: 1481314458664549625}
+  - component: {fileID: 9163169501237918690}
+  m_Layer: 7
   m_Name: Lich
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +109,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -123,6 +125,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.42779636, y: 0.85376966}
   m_EdgeRadius: 0
+--- !u!114 &1481314458664549625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6170348173127460349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f49b0cd27344e6b4a6e6e874af24af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  currentHealth: 0
+--- !u!114 &9163169501237918690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6170348173127460349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9f695121e34b68848f0bd0e21fe9a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
 --- !u!1 &6514018168381803251
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +163,7 @@ GameObject:
   - component: {fileID: 4769353589632457917}
   - component: {fileID: 9169699473945713951}
   - component: {fileID: 7116639913696618906}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LichSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
