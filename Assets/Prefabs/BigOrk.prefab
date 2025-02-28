@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5978426668180281231}
   - component: {fileID: 8014368829447991891}
   - component: {fileID: 7293215516611403801}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BigOrkSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,9 @@ GameObject:
   - component: {fileID: 323921044145057920}
   - component: {fileID: 3429965922055093487}
   - component: {fileID: 6862808613058581270}
-  m_Layer: 0
+  - component: {fileID: 9006101317598172501}
+  - component: {fileID: 4593179216314789173}
+  m_Layer: 7
   m_Name: BigOrk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +219,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -233,3 +235,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.7608656, y: 0.8428545}
   m_EdgeRadius: 0
+--- !u!114 &9006101317598172501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404991992688637769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f49b0cd27344e6b4a6e6e874af24af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+--- !u!114 &4593179216314789173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404991992688637769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9f695121e34b68848f0bd0e21fe9a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10

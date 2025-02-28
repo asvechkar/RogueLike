@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 341913363769318028}
   - component: {fileID: 8230944472009698005}
   - component: {fileID: 5656057527554577743}
-  m_Layer: 0
+  - component: {fileID: 513876604193921939}
+  - component: {fileID: 6643169800267174752}
+  m_Layer: 7
   m_Name: Goblin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,13 +109,40 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.06781137}
   m_Size: {x: 0.47913498, y: 0.6765921}
   m_Direction: 0
+--- !u!114 &513876604193921939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8700064324414997205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f49b0cd27344e6b4a6e6e874af24af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 40
+  currentHealth: 0
+--- !u!114 &6643169800267174752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8700064324414997205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9f695121e34b68848f0bd0e21fe9a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 3
 --- !u!1 &8759993618515346303
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +154,7 @@ GameObject:
   - component: {fileID: 7730206427274226580}
   - component: {fileID: 9116617017914347124}
   - component: {fileID: 7506169727838556291}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GoblinSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

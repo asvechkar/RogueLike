@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 5529293181096545546}
   - component: {fileID: 4785715870047113940}
   - component: {fileID: 4566533561107578854}
-  m_Layer: 0
+  - component: {fileID: 2526490267093526649}
+  - component: {fileID: 7324537200051497880}
+  m_Layer: 7
   m_Name: Puma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +109,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -123,6 +125,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.389698, y: 0.62964576}
   m_EdgeRadius: 0
+--- !u!114 &2526490267093526649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5654808363605779707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f49b0cd27344e6b4a6e6e874af24af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 40
+  currentHealth: 0
+--- !u!114 &7324537200051497880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5654808363605779707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9f695121e34b68848f0bd0e21fe9a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 3
 --- !u!1 &8718761565414506956
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +163,7 @@ GameObject:
   - component: {fileID: 3459369532993698516}
   - component: {fileID: 145176632386139853}
   - component: {fileID: 7097990575329985804}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PumaSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
