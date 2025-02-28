@@ -113878,10 +113878,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8692341695719930250, guid: ab432968ea931432e801e8ae5dd6fdc1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1056925348}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab432968ea931432e801e8ae5dd6fdc1, type: 3}
 --- !u!1 &874117365
 GameObject:
@@ -114593,36 +114590,17 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!1 &1056925344 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8692341695719930250, guid: ab432968ea931432e801e8ae5dd6fdc1, type: 3}
-  m_PrefabInstance: {fileID: 778861538}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1056925346 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5278241047875410767, guid: ab432968ea931432e801e8ae5dd6fdc1, type: 3}
   m_PrefabInstance: {fileID: 778861538}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056925344}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40fa93a03513147589eed4b93b7eef7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1056925348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056925344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4433efd6f494190a2c988cb81130547, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 50
 --- !u!1001 &1483402988
 PrefabInstance:
   m_ObjectHideFlags: 0
