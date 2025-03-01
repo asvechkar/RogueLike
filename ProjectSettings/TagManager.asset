@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - 
+  - Decorations
   - 
   - 
   - 
@@ -41,14 +41,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Water
+    uniqueID: 3242672217
+    locked: 0
   - name: Ground
     uniqueID: 1295096233
     locked: 0
-  - name: Decorations
+  - name: BeforeDecor
     uniqueID: 979769389
     locked: 0
   - name: Player
     uniqueID: 1541029933
+    locked: 0
+  - name: BehindDecor
+    uniqueID: 4147546275
     locked: 0
   m_RenderingLayers:
   - Default

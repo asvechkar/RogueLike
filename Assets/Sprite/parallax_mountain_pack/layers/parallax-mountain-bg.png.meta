@@ -147,7 +147,7 @@ TextureImporter:
         width: 272
         height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3f4c78cc0d12a44298b1426eaf51a32a
     internalID: 0
     vertices: []
     indices: 
@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      parallax-mountain-bg_0: 1718109302827518710
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
