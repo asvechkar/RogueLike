@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using GameCore;
 using GameCore.Pool;
@@ -19,6 +20,11 @@ namespace Enemy
         private GetRandomSpawnPoint _getRandomSpawn;
         private Coroutine _spawnCoroutine;
 
+        private void Awake()
+        {
+            Activate();
+        }
+
         private void Start()
         {
             _interval = new WaitForSeconds(timeToSpawn);
@@ -32,6 +38,7 @@ namespace Enemy
                 var enemy = enemyPool.GetFromPool();
                 enemy.transform.SetParent(enemyContainer);
                 enemy.transform.position = _getRandomSpawn.GetRandomPoint(minPos, maxPos);
+                Debug.Log("Been spawned");
                 yield return _interval;
             }
         }
