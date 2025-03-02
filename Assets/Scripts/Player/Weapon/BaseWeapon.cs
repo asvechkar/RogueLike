@@ -8,15 +8,15 @@ namespace Player.Weapon
 {
     public abstract class BaseWeapon: MonoBehaviour
     {
-        [SerializeField] private List<WeaponStats> _weaponStats = new List<WeaponStats>();
-        [SerializeField] private float damage;
+        [SerializeField] private List<WeaponStats> _weaponStats = new();
+        [SerializeField] private float _damage;
         
         private DiContainer _diContainer;
         private int _currentLevel = 1;
         private readonly int _maxLevel = 8;
 
         public List<WeaponStats> WeaponStats => _weaponStats;
-        public float Damage => damage;
+        public float Damage => _damage;
         public int CurrentLevel => _currentLevel;
         public int MaxLevel => _maxLevel;
 
@@ -25,7 +25,7 @@ namespace Player.Weapon
             _diContainer.Inject(this);
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             SetStats(0);
         }
@@ -38,16 +38,16 @@ namespace Player.Weapon
             SetStats(_currentLevel - 1);
         }
 
-        protected void SetStats(int value)
+        protected virtual void SetStats(int value)
         {
-            damage = _weaponStats[value].Damage;
+            _damage = _weaponStats[value].Damage;
         }
 
         protected virtual void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.TryGetComponent(out EnemyHealth enemy))
             {
-                var randomDamage = Random.Range(damage / 2f, damage * 1.5f);
+                var randomDamage = Random.Range(_damage / 2f, _damage * 1.5f);
                 enemy.TakeDamage(randomDamage);
             }
         }

@@ -1,0 +1,113 @@
+using System.Collections;
+using System.Collections.Generic;
+using GameCore;
+using UnityEngine;
+
+namespace Player.Weapon
+{
+    public class FireballWeapon : BaseWeapon, IActivate
+    {
+        [Header("Single")]
+        [SerializeField] private SpriteRenderer spriteRenderer1X;
+        [SerializeField] private Collider2D collider1X;
+        [SerializeField] private Transform transformSprite1X, targetContainer1X;
+        
+        [Header("Multiple")]
+        [SerializeField] private List<SpriteRenderer> spriteRenderer2X = new();
+        [SerializeField] private List<Collider2D> collider2X = new();
+        [SerializeField] private List<Transform> transformSprite2X = new();
+        [SerializeField] private Transform targetContainer2X;
+        
+        private WaitForSeconds _interval, _duration, _timeBetweenAttack;
+        private float _rotationSpeed, _range;
+        private Coroutine _attackCoroutine;
+
+        private void Update()
+        {
+            transform.Rotate(0, 0, _rotationSpeed * Time.deltaTime);
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            SetupWeapon();
+            Activate();
+        }
+
+        public override void LevelUp()
+        {
+            base.LevelUp();
+            SetupWeapon();
+        }
+
+        protected override void SetStats(int value)
+        {
+            base.SetStats(value);
+            _rotationSpeed = WeaponStats[CurrentLevel - 1].Speed;
+            _range = WeaponStats[CurrentLevel - 1].Range;
+            _duration = new WaitForSeconds(WeaponStats[CurrentLevel - 1].Duration);
+            _timeBetweenAttack = new WaitForSeconds(WeaponStats[CurrentLevel - 1].TimeBetweenAttack);
+        }
+
+        private void SetupWeapon()
+        {
+            if (CurrentLevel < 4)
+            {
+                targetContainer1X.gameObject.SetActive(true);
+                targetContainer2X.gameObject.SetActive(false);
+                transformSprite1X.localPosition = new Vector3(_range, 0, 0);
+                collider1X.offset = new Vector2(_range, 0);
+            }
+            else
+            {
+                targetContainer1X.gameObject.SetActive(false);
+                targetContainer2X.gameObject.SetActive(true);
+
+                foreach (var current in collider2X)
+                {
+                    current.gameObject.SetActive(true);
+                }
+                
+                transformSprite2X[0].localPosition = new Vector3(_range, 0, 0);
+                collider2X[0].offset = new Vector2(_range, 0);
+                transformSprite2X[1].localPosition = new Vector3(-_range, 0, 0);
+                collider2X[1].offset = new Vector2(-_range, 0);
+            }
+        }
+
+        private IEnumerator WeaponLifeCycle()
+        {
+            while (true)
+            {
+                if (CurrentLevel < 4)
+                {
+                    spriteRenderer1X.enabled = !spriteRenderer1X.enabled;
+                    collider1X.enabled = !collider1X.enabled;
+                }
+                else
+                {
+                    for (int i = 0; i < spriteRenderer2X.Count; i++)
+                    {
+                        spriteRenderer2X[i].enabled = !spriteRenderer2X[i].enabled;
+                        collider2X[i].enabled = !collider2X[i].enabled;
+                    }
+                }
+
+                _interval = spriteRenderer1X.enabled || spriteRenderer2X[0].enabled ? _duration : _timeBetweenAttack;
+
+                yield return _interval;
+            }
+        }
+
+        public void Activate()
+        {
+            _attackCoroutine = StartCoroutine(WeaponLifeCycle());
+        }
+
+        public void Deactivate()
+        {
+            if (_attackCoroutine != null)
+                StopCoroutine(_attackCoroutine);
+        }
+    }
+}

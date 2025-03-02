@@ -154,12 +154,12 @@ TextureImporter:
       name: FireBall_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 136
-        width: 35
-        height: 19
+        x: 0
+        y: 128
+        width: 64
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -176,12 +176,12 @@ TextureImporter:
       name: FireBall_1
       rect:
         serializedVersion: 2
-        x: 21
-        y: 104
-        width: 33
-        height: 19
+        x: 0
+        y: 96
+        width: 64
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -198,12 +198,12 @@ TextureImporter:
       name: FireBall_2
       rect:
         serializedVersion: 2
-        x: 17
-        y: 72
-        width: 37
-        height: 19
+        x: 0
+        y: 64
+        width: 64
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -220,12 +220,12 @@ TextureImporter:
       name: FireBall_3
       rect:
         serializedVersion: 2
-        x: 20
-        y: 40
-        width: 34
-        height: 19
+        x: 0
+        y: 32
+        width: 64
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -242,12 +242,12 @@ TextureImporter:
       name: FireBall_4
       rect:
         serializedVersion: 2
-        x: 23
-        y: 8
-        width: 31
-        height: 19
+        x: 0
+        y: 0
+        width: 64
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
