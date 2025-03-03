@@ -32,11 +32,6 @@ namespace Player.Weapon
             base.Start();
             SetupWeapon();
             Activate();
-            LevelUp();
-            LevelUp();
-            LevelUp();
-            LevelUp();
-            LevelUp();
         }
 
         public override void LevelUp()
