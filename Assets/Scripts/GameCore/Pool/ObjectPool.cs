@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -8,17 +9,15 @@ namespace GameCore.Pool
     {
         [SerializeField] private GameObject prefab;
         
-        private List<GameObject> _objectPool = new List<GameObject>();
+        private List<GameObject> _objectPool = new();
         private DiContainer _diContainer;
 
         public GameObject GetFromPool()
         {
-            foreach (var objectItem in _objectPool)
+            foreach (var poolItem in _objectPool.Where(poolItem => !poolItem.activeInHierarchy))
             {
-                if (objectItem.activeInHierarchy) continue;
-                
-                objectItem.SetActive(true);
-                return objectItem;
+                poolItem.SetActive(true);
+                return poolItem;
             }
             
             var newObject = Create();
@@ -34,7 +33,7 @@ namespace GameCore.Pool
 
         public GameObject Create()
         {
-            GameObject newObject = _diContainer.InstantiatePrefab(prefab);
+            var newObject = _diContainer.InstantiatePrefab(prefab);
             newObject.SetActive(false);
             _objectPool.Add(newObject);
             return newObject;

@@ -1,19 +1,21 @@
+using System;
 using UnityEngine;
 
 namespace Player.Weapon
 {
+    [Serializable]
     public class WeaponStats
     {
-        [SerializeField] private float _speed, _damage, _range, _timeBetweenAttack, _duration;
+        [SerializeField] private float speed, damage, range, timeBetweenAttack, duration;
 
-        public float Speed => _speed;
+        public float Speed => speed;
 
-        public float Damage => _damage;
+        public float Damage => damage;
 
-        public float Range => _range;
+        public float Range => range;
 
-        public float TimeBetweenAttack => _timeBetweenAttack;
+        public float TimeBetweenAttack => timeBetweenAttack;
 
-        public float Duration => _duration;
+        public float Duration => duration;
     }
 }

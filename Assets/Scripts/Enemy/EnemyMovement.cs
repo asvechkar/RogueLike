@@ -27,6 +27,8 @@ namespace Enemy
 
         private void OnDisable()
         {
+            if (_distanceToHide == null) return;
+            
             StopCoroutine(_distanceToHide);
         }
 

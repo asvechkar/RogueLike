@@ -51,6 +51,7 @@ namespace Enemy
         public void Deactivate()
         {
             if (_spawnCoroutine == null) return;
+            
             StopCoroutine(_spawnCoroutine);
         }
 

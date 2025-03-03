@@ -32,6 +32,11 @@ namespace Player.Weapon
             base.Start();
             SetupWeapon();
             Activate();
+            LevelUp();
+            LevelUp();
+            LevelUp();
+            LevelUp();
+            LevelUp();
         }
 
         public override void LevelUp()
@@ -106,8 +111,9 @@ namespace Player.Weapon
 
         public void Deactivate()
         {
-            if (_attackCoroutine != null)
-                StopCoroutine(_attackCoroutine);
+            if (_attackCoroutine == null) return;
+            
+            StopCoroutine(_attackCoroutine);
         }
     }
 }
