@@ -99,12 +99,16 @@ namespace Player.Weapon
                     {
                         current.gameObject.SetActive(true);
                     }
-
+                    
                     for(var i = 0; i < transformSprite3X.Count; i++)
                     {
-                        var delta = _range / 100f;
-                        transformSprite3X[i].localPosition = new Vector3(transformSprite3X[i].localPosition.x * delta, 0, 0);
-                        collider3X[i].offset = new Vector2(collider3X[i].offset.x * delta, 0);
+                        var angleOffset = 360f / transformSprite3X.Count * i;
+                        
+                        var x = targetContainer3X.position.x + Mathf.Cos(angleOffset * Mathf.Deg2Rad) * _range;
+                        var y = targetContainer3X.position.y + Mathf.Sin(angleOffset * Mathf.Deg2Rad) * _range;
+                        
+                        transformSprite3X[i].localPosition = new Vector3(x, y, 0);
+                        collider3X[i].offset = new Vector2(x, y);
                     }
 
                     break;
