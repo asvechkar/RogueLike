@@ -20,6 +20,11 @@ namespace Player.Weapon
         {
             Activate();
             LevelUp();
+            LevelUp();
+            LevelUp();
+            LevelUp();
+            LevelUp();
+            LevelUp();
         }
 
         protected override void OnTriggerEnter2D(Collider2D other)
@@ -54,6 +59,14 @@ namespace Player.Weapon
                 for (int i = 0; i < _enemiesInZone.Count; i++)
                 {
                     _enemiesInZone[i].TakeDamage(_damage);
+
+                    if (CurrentLevel >= 5 && CurrentLevel <= 8)
+                    {
+                        if (_enemiesInZone[i].TryGetComponent(out EnemyMovement enemyMovement))
+                        {
+                            enemyMovement.Freeze(0.5f);
+                        }
+                    }
                 }
                 
                 yield return _timeBetweenAttacks;

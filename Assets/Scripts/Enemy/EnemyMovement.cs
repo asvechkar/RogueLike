@@ -17,7 +17,7 @@ namespace Enemy
         
         private Vector3 _direction;
         private PlayerMovement _playerMovement;
-        private WaitForSeconds _checkTime = new WaitForSeconds(3f);
+        private WaitForSeconds _checkTime = new(3f);
         private Coroutine _distanceToHide;
 
         private void OnEnable()
@@ -63,6 +63,21 @@ namespace Enemy
                 }
                 yield return _checkTime;
             }
+        }
+        
+        public void Freeze(float multiplier)
+        {
+            StartCoroutine(FreezeRoutine(multiplier));
+        }
+
+        private IEnumerator FreezeRoutine(float multiplier)
+        {
+            var originalSpeed = speed;
+            speed = speed * multiplier;
+
+            yield return new WaitForSeconds(freezeTimer);
+
+            speed = originalSpeed;
         }
     }
 }
