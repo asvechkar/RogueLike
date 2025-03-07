@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using GameCore.Health;
 using UnityEngine;
@@ -8,12 +9,15 @@ namespace Enemy
     {
         private readonly WaitForSeconds _damageTick = new WaitForSeconds(1f);
         
+        public Action<EnemyHealth> OnDeath;
+        
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
 
             if (CurrentHealth <= 0)
             {
+                OnDeath?.Invoke(this);
                 gameObject.SetActive(false);
             }
         }

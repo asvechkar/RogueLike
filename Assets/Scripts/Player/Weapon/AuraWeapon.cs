@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Enemy;
 using GameCore;
+using GameCore.Health;
 using UnityEngine;
 
 namespace Player.Weapon
@@ -27,10 +29,17 @@ namespace Player.Weapon
             LevelUp();
         }
 
+        private void RemoveDeadEnemies(EnemyHealth enemy)
+        {
+            enemy.OnDeath -= RemoveDeadEnemies;
+            _enemiesInZone.Remove(enemy);
+        }
+
         protected override void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.TryGetComponent(out EnemyHealth enemy))
             {
+                enemy.OnDeath += RemoveDeadEnemies;
                 _enemiesInZone.Add(enemy);
             }
         }
@@ -39,6 +48,7 @@ namespace Player.Weapon
         {
             if (other.gameObject.TryGetComponent(out EnemyHealth enemy))
             {
+                enemy.OnDeath -= RemoveDeadEnemies;
                 _enemiesInZone.Remove(enemy);
             }
         }
