@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Enemy;
 using GameCore;
-using GameCore.Health;
 using UnityEngine;
 
 namespace Player.Weapon
@@ -68,8 +66,6 @@ namespace Player.Weapon
             {
                 for (int i = 0; i < _enemiesInZone.Count; i++)
                 {
-                    _enemiesInZone[i].TakeDamage(_damage);
-
                     if (CurrentLevel >= 5 && CurrentLevel <= 8)
                     {
                         if (_enemiesInZone[i].TryGetComponent(out EnemyMovement enemyMovement))
@@ -77,6 +73,8 @@ namespace Player.Weapon
                             enemyMovement.Freeze(0.5f);
                         }
                     }
+                    
+                    _enemiesInZone[i].TakeDamage(_damage);
                 }
                 
                 yield return _timeBetweenAttacks;

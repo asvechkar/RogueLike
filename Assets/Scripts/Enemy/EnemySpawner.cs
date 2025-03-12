@@ -38,7 +38,6 @@ namespace Enemy
                 var enemy = enemyPool.GetFromPool();
                 enemy.transform.SetParent(enemyContainer);
                 enemy.transform.position = _getRandomSpawn.GetRandomPoint(minPos, maxPos);
-                Debug.Log("Been spawned");
                 yield return _interval;
             }
         }
