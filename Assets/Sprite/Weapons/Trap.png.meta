@@ -217,12 +217,12 @@ TextureImporter:
       name: Trap_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 123
-        width: 10
-        height: 13
+        x: 0
+        y: 114
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -239,12 +239,12 @@ TextureImporter:
       name: Trap_1
       rect:
         serializedVersion: 2
-        x: 42
-        y: 124
-        width: 11
-        height: 13
+        x: 32
+        y: 114
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -261,12 +261,12 @@ TextureImporter:
       name: Trap_2
       rect:
         serializedVersion: 2
-        x: 73
-        y: 125
-        width: 13
-        height: 10
+        x: 64
+        y: 114
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -283,12 +283,12 @@ TextureImporter:
       name: Trap_3
       rect:
         serializedVersion: 2
-        x: 106
-        y: 125
-        width: 13
-        height: 11
+        x: 96
+        y: 114
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -305,12 +305,12 @@ TextureImporter:
       name: Trap_4
       rect:
         serializedVersion: 2
-        x: 139
-        y: 123
-        width: 10
-        height: 13
+        x: 128
+        y: 114
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -327,12 +327,12 @@ TextureImporter:
       name: Trap_5
       rect:
         serializedVersion: 2
-        x: 171
-        y: 123
-        width: 11
-        height: 13
+        x: 160
+        y: 114
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -349,12 +349,12 @@ TextureImporter:
       name: Trap_6
       rect:
         serializedVersion: 2
-        x: 202
-        y: 125
-        width: 13
-        height: 10
+        x: 192
+        y: 114
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -371,12 +371,12 @@ TextureImporter:
       name: Trap_7
       rect:
         serializedVersion: 2
-        x: 233
-        y: 124
-        width: 13
-        height: 11
+        x: 224
+        y: 114
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -393,12 +393,12 @@ TextureImporter:
       name: Trap_8
       rect:
         serializedVersion: 2
-        x: 11
-        y: 86
-        width: 7
-        height: 7
+        x: 0
+        y: 82
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -415,12 +415,12 @@ TextureImporter:
       name: Trap_9
       rect:
         serializedVersion: 2
-        x: 43
-        y: 87
-        width: 8
-        height: 8
+        x: 32
+        y: 82
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -437,12 +437,12 @@ TextureImporter:
       name: Trap_10
       rect:
         serializedVersion: 2
-        x: 74
-        y: 86
-        width: 11
-        height: 11
+        x: 64
+        y: 82
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -459,12 +459,12 @@ TextureImporter:
       name: Trap_11
       rect:
         serializedVersion: 2
-        x: 104
-        y: 85
-        width: 15
-        height: 13
+        x: 96
+        y: 82
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -481,12 +481,12 @@ TextureImporter:
       name: Trap_12
       rect:
         serializedVersion: 2
-        x: 135
-        y: 84
-        width: 19
-        height: 16
+        x: 128
+        y: 82
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -503,12 +503,12 @@ TextureImporter:
       name: Trap_13
       rect:
         serializedVersion: 2
-        x: 165
-        y: 83
-        width: 22
-        height: 18
+        x: 160
+        y: 82
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -525,12 +525,12 @@ TextureImporter:
       name: Trap_14
       rect:
         serializedVersion: 2
-        x: 196
+        x: 192
         y: 82
-        width: 26
-        height: 19
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -547,12 +547,12 @@ TextureImporter:
       name: Trap_15
       rect:
         serializedVersion: 2
-        x: 227
+        x: 224
         y: 82
-        width: 27
-        height: 17
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -569,12 +569,12 @@ TextureImporter:
       name: Trap_16
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 50
-        width: 27
-        height: 17
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -591,12 +591,12 @@ TextureImporter:
       name: Trap_17
       rect:
         serializedVersion: 2
-        x: 35
+        x: 32
         y: 50
-        width: 27
-        height: 25
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -613,12 +613,12 @@ TextureImporter:
       name: Trap_18
       rect:
         serializedVersion: 2
-        x: 66
+        x: 64
         y: 50
-        width: 29
-        height: 31
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -635,12 +635,12 @@ TextureImporter:
       name: Trap_19
       rect:
         serializedVersion: 2
-        x: 98
+        x: 96
         y: 50
-        width: 29
-        height: 31
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -657,12 +657,12 @@ TextureImporter:
       name: Trap_20
       rect:
         serializedVersion: 2
-        x: 127
+        x: 128
         y: 50
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -679,12 +679,12 @@ TextureImporter:
       name: Trap_21
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 18
-        width: 27
-        height: 17
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -701,12 +701,12 @@ TextureImporter:
       name: Trap_22
       rect:
         serializedVersion: 2
-        x: 35
+        x: 32
         y: 18
-        width: 27
-        height: 20
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -723,12 +723,12 @@ TextureImporter:
       name: Trap_23
       rect:
         serializedVersion: 2
-        x: 66
+        x: 64
         y: 18
-        width: 29
-        height: 28
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -745,12 +745,12 @@ TextureImporter:
       name: Trap_24
       rect:
         serializedVersion: 2
-        x: 98
+        x: 96
         y: 18
-        width: 29
-        height: 28
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -767,12 +767,12 @@ TextureImporter:
       name: Trap_25
       rect:
         serializedVersion: 2
-        x: 130
+        x: 128
         y: 18
-        width: 29
-        height: 31
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

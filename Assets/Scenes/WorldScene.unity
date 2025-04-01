@@ -1586,6 +1586,7 @@ Transform:
   - {fileID: 46573111}
   - {fileID: 1637908518}
   - {fileID: 1948109035}
+  - {fileID: 963067365}
   m_Father: {fileID: 1707571057}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &730628913
@@ -8560,6 +8561,107 @@ Transform:
   - {fileID: 2129730431}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &963067364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 963067365}
+  - component: {fileID: 963067367}
+  - component: {fileID: 963067366}
+  m_Layer: 6
+  m_Name: TrapWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &963067365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963067364}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 688021382}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963067366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963067364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 138a15ddbb084669a81debc7262d1fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponStats:
+  - speed: 0
+    damage: 2
+    range: 0
+    timeBetweenAttack: 3
+    duration: 0
+  - speed: 0
+    damage: 2.1
+    range: 0
+    timeBetweenAttack: 3
+    duration: 0
+  - speed: 0
+    damage: 2.2
+    range: 0
+    timeBetweenAttack: 3
+    duration: 0
+  - speed: 0
+    damage: 2.3
+    range: 0
+    timeBetweenAttack: 3
+    duration: 0
+  - speed: 0
+    damage: 2.4
+    range: 0
+    timeBetweenAttack: 3
+    duration: 0
+  - speed: 0
+    damage: 2.5
+    range: 0
+    timeBetweenAttack: 3
+    duration: 0
+  - speed: 0
+    damage: 2.6
+    range: 0
+    timeBetweenAttack: 3
+    duration: 0
+  - speed: 0
+    damage: 2.7
+    range: 0
+    timeBetweenAttack: 3
+    duration: 0
+  trapPool: {fileID: 963067367}
+  container: {fileID: 2129730431}
+--- !u!114 &963067367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963067364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cbb939ad6c44691ae7180138044e913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4512939532762956691, guid: 40b5eaa3c8f794e0c80e21f2b777bee4, type: 3}
 --- !u!1 &977562765
 GameObject:
   m_ObjectHideFlags: 0
@@ -35118,6 +35220,7 @@ MonoBehaviour:
   playerHealth: {fileID: 7357857369299788983}
   surikenWeapon: {fileID: 1637908517}
   frostBoltWeapon: {fileID: 1948109037}
+  trapWeapon: {fileID: 963067366}
 --- !u!114 &1609083502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35551,7 +35654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1948109035
 Transform:
   m_ObjectHideFlags: 0
