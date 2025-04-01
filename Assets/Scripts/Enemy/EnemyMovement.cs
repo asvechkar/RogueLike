@@ -67,7 +67,10 @@ namespace Enemy
         
         public void Freeze(float multiplier)
         {
-            StartCoroutine(FreezeRoutine(multiplier));
+            if (gameObject.activeSelf)
+            {
+                StartCoroutine(FreezeRoutine(multiplier));
+            }
         }
 
         private IEnumerator FreezeRoutine(float multiplier)

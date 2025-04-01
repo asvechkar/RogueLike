@@ -154,12 +154,12 @@ TextureImporter:
       name: Frozen_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 100
-        width: 47
-        height: 26
+        x: 0
+        y: 96
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -176,12 +176,12 @@ TextureImporter:
       name: Frozen_1
       rect:
         serializedVersion: 2
-        x: 2
-        y: 67
-        width: 46
-        height: 28
+        x: 0
+        y: 64
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -198,12 +198,12 @@ TextureImporter:
       name: Frozen_2
       rect:
         serializedVersion: 2
-        x: 2
-        y: 39
-        width: 46
-        height: 23
+        x: 0
+        y: 32
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -220,12 +220,12 @@ TextureImporter:
       name: Frozen_3
       rect:
         serializedVersion: 2
-        x: 2
-        y: 7
-        width: 30
-        height: 19
+        x: 0
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -234,28 +234,6 @@ TextureImporter:
       bones: []
       spriteID: c6f8f9dd67babfd70800000000000000
       internalID: 9078038000908078956
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Frozen_4
-      rect:
-        serializedVersion: 2
-        x: 26
-        y: 8
-        width: 22
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f44f9aec402c019f0800000000000000
-      internalID: -499686232735222705
       vertices: []
       indices: 
       edges: []
@@ -278,7 +256,6 @@ TextureImporter:
       Frozen_1: 3692095763232431326
       Frozen_2: 4540476424995198884
       Frozen_3: 9078038000908078956
-      Frozen_4: -499686232735222705
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
