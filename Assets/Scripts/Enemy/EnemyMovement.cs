@@ -76,7 +76,7 @@ namespace Enemy
         private IEnumerator FreezeRoutine(float multiplier)
         {
             var originalSpeed = speed;
-            speed = speed * multiplier;
+            speed /= multiplier;
 
             yield return new WaitForSeconds(freezeTimer);
 
