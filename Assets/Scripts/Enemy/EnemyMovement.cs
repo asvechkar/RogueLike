@@ -19,9 +19,16 @@ namespace Enemy
         private PlayerMovement _playerMovement;
         private WaitForSeconds _checkTime = new(3f);
         private Coroutine _distanceToHide;
+        private float _originalSpeed;
+
+        private void Awake()
+        {
+            _originalSpeed = speed;
+        }
 
         private void OnEnable()
         {
+            speed = _originalSpeed;
             _distanceToHide = StartCoroutine(CheckDistanceToHide());
         }
 
@@ -75,12 +82,11 @@ namespace Enemy
 
         private IEnumerator FreezeRoutine(float multiplier)
         {
-            var originalSpeed = speed;
             speed /= multiplier;
 
             yield return new WaitForSeconds(freezeTimer);
 
-            speed = originalSpeed;
+            speed = _originalSpeed;
         }
     }
 }
