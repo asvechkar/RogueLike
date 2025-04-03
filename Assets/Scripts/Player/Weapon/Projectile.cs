@@ -1,13 +1,17 @@
-using System;
 using System.Collections;
 using Enemy;
 using UnityEngine;
+using UnityEngine.Pool;
 using Random = UnityEngine.Random;
 
 namespace Player.Weapon
 {
     public abstract class Projectile : MonoBehaviour
     {
+        private IObjectPool<GameObject> _pool;
+
+        public IObjectPool<GameObject> Pool { set => _pool = value; }
+
         protected WaitForSeconds Timer;
         protected float Damage;
 

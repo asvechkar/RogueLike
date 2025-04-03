@@ -8024,7 +8024,7 @@ GameObject:
   - component: {fileID: 868076575}
   - component: {fileID: 868076576}
   - component: {fileID: 868076578}
-  - component: {fileID: 868076577}
+  - component: {fileID: 868076579}
   m_Layer: 0
   m_Name: BowSprite
   m_TagString: Untagged
@@ -8125,19 +8125,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &868076577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868076573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cbb939ad6c44691ae7180138044e913, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 9132064256147288527, guid: 66088744f52114603a4cd474946c7d1c, type: 3}
 --- !u!114 &868076578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8195,8 +8182,24 @@ MonoBehaviour:
   container: {fileID: 2129730431}
   shootPoint: {fileID: 2070966351}
   weaponTransform: {fileID: 2021460581}
-  arrowPool: {fileID: 868076577}
+  arrowPool: {fileID: 868076579}
   animator: {fileID: 868076576}
+--- !u!114 &868076579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868076573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e916af8e5244e148e00ab74ed6f377e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 9132064256147288527, guid: 66088744f52114603a4cd474946c7d1c, type: 3}
+  collectionCheck: 1
+  defaultCapacity: 20
+  maxSize: 100
 --- !u!1 &874117365
 GameObject:
   m_ObjectHideFlags: 0
@@ -11567,7 +11570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1948109035
 Transform:
   m_ObjectHideFlags: 0
@@ -11781,7 +11784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2021460581
 Transform:
   m_ObjectHideFlags: 0

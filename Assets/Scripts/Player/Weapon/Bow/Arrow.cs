@@ -35,7 +35,5 @@ namespace Player.Weapon.Bow
         {
             _bowWeapon = bowWeapon;
         }
-        
-        
     }
 }

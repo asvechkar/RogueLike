@@ -9,9 +9,11 @@ namespace Player.Weapon.Bow
 {
     public class BowWeapon : BaseWeapon, IActivate
     {
+        private static readonly int Idle = Animator.StringToHash("Idle");
+        private static readonly int Attack = Animator.StringToHash("Attack");
         [SerializeField] private Camera mainCamera;
         [SerializeField] private Transform container, shootPoint, weaponTransform;
-        [SerializeField] private ObjectPool arrowPool;
+        [SerializeField] private ProjectilePool arrowPool;
         [SerializeField] private Animator animator;
         
         private WaitForSeconds _timeBetweenAttack;
@@ -59,11 +61,11 @@ namespace Player.Weapon.Bow
 
         public void ThrowArrow()
         {
-            var arrow = arrowPool.GetFromPool();
+            var arrow = arrowPool.GetProjectile();
             arrow.transform.SetParent(container);
             arrow.transform.position = shootPoint.position;
             arrow.transform.rotation = transform.rotation;
-            animator.SetTrigger("Idle");
+            animator.SetTrigger(Idle);
         }
 
         private IEnumerator StartThrowArrow()
@@ -72,7 +74,7 @@ namespace Player.Weapon.Bow
             {
                 if (_playerMovement.Movement != Vector3.zero)
                 {
-                    animator.SetTrigger("Attack");
+                    animator.SetTrigger(Attack);
                 }
                 
                 yield return _timeBetweenAttack;
