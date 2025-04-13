@@ -19,11 +19,6 @@ namespace RogueLike.Scripts.Enemy
         private GetRandomSpawnPoint _getRandomSpawn;
         private Coroutine _spawnCoroutine;
 
-        private void Awake()
-        {
-            Activate();
-        }
-
         private void Start()
         {
             _interval = new WaitForSeconds(timeToSpawn);
