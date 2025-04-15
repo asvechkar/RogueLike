@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.gustavopsantos.reflex": {
+      "version": "https://github.com/gustavopsantos/reflex.git?path=/Assets/Reflex/#10.0.2",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "593403f2a14c5a1404d8ccec1729abe2959fd47a"
+    },
     "com.unity.2d.animation": {
       "version": "10.1.4",
       "depth": 1,

@@ -1,8 +1,8 @@
 using System.Collections;
+using Reflex.Attributes;
 using RogueLike.Scripts.GameCore;
 using RogueLike.Scripts.GameCore.Pool;
 using UnityEngine;
-using Zenject;
 
 namespace RogueLike.Scripts.Player.Weapon.Bow
 {
@@ -16,7 +16,7 @@ namespace RogueLike.Scripts.Player.Weapon.Bow
         [SerializeField] private Animator animator;
         
         private WaitForSeconds _timeBetweenAttack;
-        private PlayerMovement _playerMovement;
+        [Inject] private PlayerMovement _playerMovement;
         private Coroutine _bowCoroutine;
         private Vector3 _direction;
         private float _duration, _speed;
@@ -78,12 +78,6 @@ namespace RogueLike.Scripts.Player.Weapon.Bow
                 
                 yield return _timeBetweenAttack;
             }
-        }
-        
-        [Inject]
-        private void Construct(PlayerMovement playerMovement)
-        {
-            _playerMovement = playerMovement;
         }
     }
 }

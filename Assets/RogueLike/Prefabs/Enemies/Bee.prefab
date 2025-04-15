@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 9099259944853312696}
   - component: {fileID: 4467187312174678739}
   - component: {fileID: 4051484145746153347}
+  - component: {fileID: 5402419520405341913}
   m_Layer: 7
   m_Name: Bee
   m_TagString: Untagged
@@ -350,3 +351,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
+--- !u!114 &5402419520405341913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4245968340503024204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20620ae30fdd0164c9bb5bdc717d3ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _injectionStrategy: 1

@@ -1,7 +1,6 @@
 using RogueLike.Scripts.Player.Weapon;
 using UnityEngine;
 using UnityEngine.Pool;
-using Zenject;
 
 namespace RogueLike.Scripts.GameCore.Pool
 {
@@ -13,7 +12,6 @@ namespace RogueLike.Scripts.GameCore.Pool
         [SerializeField] private int maxSize = 100;
         
         private IObjectPool<GameObject> _pool;
-        private DiContainer _diContainer;
 
         public GameObject GetProjectile()
         {
@@ -35,7 +33,7 @@ namespace RogueLike.Scripts.GameCore.Pool
 
         private GameObject CreateProjectile()
         {
-            var projectileInstance = _diContainer.InstantiatePrefab(projectilePrefab);
+            var projectileInstance = Instantiate(projectilePrefab);
             projectileInstance.GetComponent<Projectile>().Pool = _pool;
             projectileInstance.SetActive(false);
             return projectileInstance;
@@ -54,12 +52,6 @@ namespace RogueLike.Scripts.GameCore.Pool
         private void OnDestroyPoolObject(GameObject projectile)
         {
             Destroy(projectile);
-        }
-        
-        [Inject]
-        private void Construct(DiContainer diContainer)
-        {
-            _diContainer = diContainer;
         }
     }
 }

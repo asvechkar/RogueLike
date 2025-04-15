@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using RogueLike.Scripts.Enemy;
 using UnityEngine;
-using Zenject;
+
 using Random = UnityEngine.Random;
 
 namespace RogueLike.Scripts.Player.Weapon
@@ -11,7 +11,6 @@ namespace RogueLike.Scripts.Player.Weapon
         [SerializeField] private List<WeaponStats> _weaponStats = new();
         protected float _damage;
         
-        private DiContainer _diContainer;
         private int _currentLevel = 1;
         private readonly int _maxLevel = 8;
 
@@ -19,11 +18,6 @@ namespace RogueLike.Scripts.Player.Weapon
         public float Damage => _damage;
         public int CurrentLevel => _currentLevel;
         public int MaxLevel => _maxLevel;
-
-        private void Awake()
-        {
-            _diContainer.Inject(this);
-        }
 
         protected virtual void Start()
         {
@@ -50,12 +44,6 @@ namespace RogueLike.Scripts.Player.Weapon
                 var randomDamage = Random.Range(_damage / 2f, _damage * 1.5f);
                 enemy.TakeDamage(randomDamage);
             }
-        }
-
-        [Inject]
-        private void Construct(DiContainer diContainer)
-        {
-            _diContainer = diContainer;
         }
     }
 }

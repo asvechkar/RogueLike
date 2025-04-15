@@ -1,12 +1,12 @@
+using Reflex.Attributes;
 using UnityEngine;
-using Zenject;
 
 namespace RogueLike.Scripts.Player.Weapon.Suriken
 {
     public class Suriken : Projectile
     {
         [SerializeField] private Transform sprite;
-        private SurikenWeapon _surikenWeapon;
+        [Inject] private SurikenWeapon _surikenWeapon;
 
         protected override void OnEnable()
         {
@@ -14,9 +14,6 @@ namespace RogueLike.Scripts.Player.Weapon.Suriken
             Timer = new WaitForSeconds(_surikenWeapon.Duration);
             Damage = _surikenWeapon.Damage;
         }
-
-        [Inject]
-        private void Construct(SurikenWeapon surikenWeapon) => _surikenWeapon = surikenWeapon;
 
         private void Update()
         {

@@ -1,16 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Zenject;
 
 namespace RogueLike.Scripts.GameCore.Pool
 {
-    public class ObjectPool : MonoBehaviour, IFactory<GameObject>
+    public class ObjectPool : MonoBehaviour
     {
         [SerializeField] private GameObject prefab;
         
         private List<GameObject> _objectPool = new();
-        private DiContainer _diContainer;
 
         public GameObject GetFromPool()
         {
@@ -24,16 +22,10 @@ namespace RogueLike.Scripts.GameCore.Pool
             newObject.SetActive(true);
             return newObject;
         }
-
-        [Inject]
-        private void Construct(DiContainer diContainer)
-        {
-            _diContainer = diContainer;
-        }
-
+        
         public GameObject Create()
         {
-            var newObject = _diContainer.InstantiatePrefab(prefab);
+            var newObject = Instantiate(prefab);
             newObject.SetActive(false);
             _objectPool.Add(newObject);
             return newObject;

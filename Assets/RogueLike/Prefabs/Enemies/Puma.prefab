@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4566533561107578854}
   - component: {fileID: 2526490267093526649}
   - component: {fileID: 7324537200051497880}
+  - component: {fileID: -6874447151344630746}
   m_Layer: 7
   m_Name: Puma
   m_TagString: Untagged
@@ -152,6 +153,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
+--- !u!114 &-6874447151344630746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5654808363605779707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20620ae30fdd0164c9bb5bdc717d3ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _injectionStrategy: 1
 --- !u!1 &8718761565414506956
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +241,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1541029933
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 5163236881460400774, guid: 0a2c63b4ed67d40e98c00941b832f11a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

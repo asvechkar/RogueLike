@@ -1,9 +1,9 @@
 using System.Collections;
+using Reflex.Attributes;
 using RogueLike.Scripts.GameCore;
 using RogueLike.Scripts.GameCore.Pool;
 using RogueLike.Scripts.Player;
 using UnityEngine;
-using Zenject;
 
 namespace RogueLike.Scripts.Enemy
 {
@@ -14,9 +14,10 @@ namespace RogueLike.Scripts.Enemy
         [SerializeField] private Transform enemyContainer;
         [SerializeField] private ObjectPool enemyPool;
 
-        private PlayerMovement _playerMovement;
+        [Inject] private PlayerMovement _playerMovement;
+        [Inject] private GetRandomSpawnPoint _getRandomSpawn;
+        
         private WaitForSeconds _interval;
-        private GetRandomSpawnPoint _getRandomSpawn;
         private Coroutine _spawnCoroutine;
 
         private void Start()
@@ -46,13 +47,6 @@ namespace RogueLike.Scripts.Enemy
             if (_spawnCoroutine == null) return;
             
             StopCoroutine(_spawnCoroutine);
-        }
-
-        [Inject]
-        private void Construct(GetRandomSpawnPoint getRandomSpawn, PlayerMovement playerMovement)
-        {
-            _getRandomSpawn = getRandomSpawn;
-            _playerMovement = playerMovement;
         }
     }
 }

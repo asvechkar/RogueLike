@@ -1,11 +1,11 @@
+using Reflex.Attributes;
 using UnityEngine;
-using Zenject;
 
 namespace RogueLike.Scripts.Player.Weapon.Bow
 {
     public class Arrow : Projectile
     {
-        private BowWeapon _bowWeapon;
+        [Inject] private BowWeapon _bowWeapon;
 
         protected override void OnEnable()
         {
@@ -27,12 +27,6 @@ namespace RogueLike.Scripts.Player.Weapon.Bow
         private void Update()
         {
             transform.position += transform.up * (-1 * _bowWeapon.Speed * Time.deltaTime);
-        }
-
-        [Inject]
-        private void Construct(BowWeapon bowWeapon)
-        {
-            _bowWeapon = bowWeapon;
         }
     }
 }

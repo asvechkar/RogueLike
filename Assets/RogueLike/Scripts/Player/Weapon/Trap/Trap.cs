@@ -1,7 +1,7 @@
 using System.Collections;
+using Reflex.Attributes;
 using RogueLike.Scripts.Enemy;
 using UnityEngine;
-using Zenject;
 
 namespace RogueLike.Scripts.Player.Weapon.Trap
 {
@@ -9,8 +9,9 @@ namespace RogueLike.Scripts.Player.Weapon.Trap
     {
         [SerializeField] private CircleCollider2D trapCollider;
         private WaitForSeconds _checkInterval = new WaitForSeconds(3f);
-        private PlayerHealth _playerHealth;
-        private TrapWeapon _trapWeapon;
+        
+        [Inject] private PlayerHealth _playerHealth;
+        [Inject] private TrapWeapon _trapWeapon;
 
         protected override void OnEnable()
         {
@@ -47,13 +48,6 @@ namespace RogueLike.Scripts.Player.Weapon.Trap
                 
                 yield return _checkInterval;
             }
-        }
-
-        [Inject]
-        private void Construct(PlayerHealth playerHealth, TrapWeapon trapWeapon)
-        {
-            _trapWeapon = trapWeapon;
-            _playerHealth = playerHealth;
         }
     }
 }

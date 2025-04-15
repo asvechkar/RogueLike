@@ -1,7 +1,7 @@
+using Reflex.Attributes;
 using RogueLike.Scripts.Player;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 namespace RogueLike.Scripts.GameCore.UI
 {
@@ -9,7 +9,7 @@ namespace RogueLike.Scripts.GameCore.UI
     {
         [SerializeField] private Image playerHealthImage;
         
-        private PlayerHealth _playerHealth;
+        [Inject] private PlayerHealth _playerHealth;
 
         private void OnEnable() => _playerHealth.OnHealthChanged += UpdateHealthBar;
 
@@ -18,12 +18,6 @@ namespace RogueLike.Scripts.GameCore.UI
         private void UpdateHealthBar()
         {
             playerHealthImage.fillAmount = Mathf.Clamp01(_playerHealth.CurrentHealth / _playerHealth.MaxHealth);
-        }
-
-        [Inject]
-        private void Construct(PlayerHealth playerHealth)
-        {
-            _playerHealth = playerHealth;
         }
     }
 }

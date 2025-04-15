@@ -1,7 +1,7 @@
 using System.Collections;
+using Reflex.Attributes;
 using RogueLike.Scripts.Player;
 using UnityEngine;
-using Zenject;
 
 namespace RogueLike.Scripts.Enemy
 {
@@ -15,7 +15,9 @@ namespace RogueLike.Scripts.Enemy
         [SerializeField] private float freezeTimer;
         
         private Vector3 _direction;
-        private PlayerMovement _playerMovement;
+        
+        [Inject] private readonly PlayerMovement _playerMovement;
+        
         private WaitForSeconds _checkTime = new(3f);
         private Coroutine _distanceToHide;
         private float _originalSpeed;
@@ -41,12 +43,6 @@ namespace RogueLike.Scripts.Enemy
         private void Update()
         {
             Move();
-        }
-
-        [Inject]
-        private void Construct(PlayerMovement playerMovement)
-        {
-            _playerMovement = playerMovement;
         }
 
         private void Move()

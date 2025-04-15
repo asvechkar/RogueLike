@@ -1,18 +1,12 @@
+using Reflex.Attributes;
 using RogueLike.Scripts.Enemy;
 using UnityEngine;
-using Zenject;
 
 namespace RogueLike.Scripts.Player.Weapon.FrostBolt
 {
     public class FrostBolt : Projectile
     {
-        private FrostBoltWeapon _frostBoltWeapon;
-
-        [Inject]
-        private void Construct(FrostBoltWeapon frostBoltWeapon)
-        {
-            _frostBoltWeapon = frostBoltWeapon;
-        }
+        [Inject] private FrostBoltWeapon _frostBoltWeapon;
 
         protected override void OnEnable()
         {
