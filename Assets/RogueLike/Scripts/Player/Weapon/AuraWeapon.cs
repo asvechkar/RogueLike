@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using RogueLike.Scripts.Enemy;
+using RogueLike.Scripts.Events;
 using RogueLike.Scripts.GameCore;
 using UnityEngine;
 
@@ -27,17 +28,25 @@ namespace RogueLike.Scripts.Player.Weapon
             LevelUp();
         }
 
-        private void RemoveDeadEnemies(EnemyHealth enemy)
+        private void OnEnable()
         {
-            enemy.OnDeath -= RemoveDeadEnemies;
-            _enemiesInZone.Remove(enemy);
+            EventBus.Subscribe<OnEnemyDeath>(RemoveDeadEnemies);
+        }
+
+        private void OnDisable()
+        {
+            EventBus.Unsubscribe<OnEnemyDeath>(RemoveDeadEnemies);
+        }
+
+        private void RemoveDeadEnemies(OnEnemyDeath evt)
+        {
+            _enemiesInZone.Remove(evt.Enemy);
         }
 
         protected override void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.TryGetComponent(out EnemyHealth enemy))
             {
-                enemy.OnDeath += RemoveDeadEnemies;
                 _enemiesInZone.Add(enemy);
             }
         }
@@ -46,7 +55,6 @@ namespace RogueLike.Scripts.Player.Weapon
         {
             if (other.gameObject.TryGetComponent(out EnemyHealth enemy))
             {
-                enemy.OnDeath -= RemoveDeadEnemies;
                 _enemiesInZone.Remove(enemy);
             }
         }

@@ -1,4 +1,5 @@
 using Reflex.Core;
+using RogueLike.Scripts.GameCore.ExperienceSystem;
 using RogueLike.Scripts.Player;
 using RogueLike.Scripts.Player.Weapon.Bow;
 using RogueLike.Scripts.Player.Weapon.FrostBolt;
@@ -16,6 +17,7 @@ namespace RogueLike.Scripts.DI
         [SerializeField] private FrostBoltWeapon frostBoltWeapon;
         [SerializeField] private TrapWeapon trapWeapon;
         [SerializeField] private BowWeapon bowWeapon;
+        [SerializeField] private ExperienceSpawner experienceSpawner;
         
         public void InstallBindings(ContainerBuilder builder)
         {
@@ -25,6 +27,7 @@ namespace RogueLike.Scripts.DI
             builder.AddSingleton(frostBoltWeapon, typeof(FrostBoltWeapon));
             builder.AddSingleton(trapWeapon, typeof(TrapWeapon));
             builder.AddSingleton(bowWeapon, typeof(BowWeapon));
+            builder.AddSingleton(experienceSpawner, typeof(ExperienceSpawner));
         }
     }
 }

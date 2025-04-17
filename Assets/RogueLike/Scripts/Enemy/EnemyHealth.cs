@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.GameCore.Health;
@@ -8,9 +7,7 @@ namespace RogueLike.Scripts.Enemy
 {
     public class EnemyHealth: ObjectHealth
     {
-        private readonly WaitForSeconds _damageTick = new WaitForSeconds(1f);
-        
-        public Action<EnemyHealth> OnDeath;
+        private readonly WaitForSeconds _damageTick = new(1f);
         
         public override void TakeDamage(float damage)
         {
@@ -20,7 +17,7 @@ namespace RogueLike.Scripts.Enemy
 
             if (CurrentHealth <= 0)
             {
-                OnDeath?.Invoke(this);
+                EventBus.Invoke(new OnEnemyDeath(this));
                 gameObject.SetActive(false);
             }
         }
