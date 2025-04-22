@@ -1,0 +1,76 @@
+using System.Collections.Generic;
+using RogueLike.Scripts.Events;
+using RogueLike.Scripts.Events.InputEvents;
+using RogueLike.Scripts.GameCore;
+using RogueLike.Scripts.GameCore.Pool;
+using UnityEngine;
+
+namespace RogueLike.Scripts.Weapon.FrostBolt
+{
+    public class FrostBoltWeapon : BaseWeapon, IActivate
+    {
+        [SerializeField] private ObjectPool objectPool;
+
+        [SerializeField] private List<Transform> shootPoints = new();
+
+        private Transform container;
+        private float _duration, _speed;
+        private Vector3 _direction;
+        
+        private void OnEnable()
+        {
+            Activate();
+            EventBus.Subscribe<OnAttacked>(StartThrowFrostBolt);
+            EventBus.Subscribe<OnPlayerLevelChanged>(ChangeLevel);
+        }
+        
+        private void OnDisable()
+        {
+            EventBus.Unsubscribe<OnAttacked>(StartThrowFrostBolt);
+            EventBus.Unsubscribe<OnPlayerLevelChanged>(ChangeLevel);
+        }
+        
+        private void ChangeLevel(OnPlayerLevelChanged evt)
+        {
+            if (CurrentLevel < MaxLevel)
+            {
+                LevelUp();
+            }
+        }
+
+        public void Activate()
+        {
+            container = GameObject.FindGameObjectWithTag("Weapon").transform;
+            SetStats(0);
+        }
+
+        public void Deactivate()
+        {
+        }
+
+        protected override void SetStats(int value)
+        {
+            base.SetStats(value);
+            var currentStats = WeaponStats[CurrentLevel - 1];
+            
+            _speed = currentStats.Speed;
+            _duration = currentStats.Duration;
+        }
+
+        private void StartThrowFrostBolt(OnAttacked evt)
+        {
+            if (!gameObject.activeInHierarchy) return;
+            
+            for (var i = 0; i < shootPoints.Count; i++)
+            {
+                _direction = (shootPoints[i].position - transform.position).normalized;
+                var angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+                var bolt = objectPool.GetFromPool();
+                bolt.GetComponent<FrostBolt>().Init(new ProjectileParams(_speed, _duration, Damage, CurrentLevel));
+                bolt.transform.SetParent(container);
+                bolt.transform.position = transform.position;
+                bolt.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            }
+        }
+    }
+}

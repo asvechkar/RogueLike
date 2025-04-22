@@ -12,7 +12,7 @@ namespace RogueLike.Scripts.Enemy
             if (!other.gameObject.TryGetComponent(out PlayerHealth player)) return;
             
             player.TakeDamage(damage);
-            // player.OnHealthChanged?.Invoke();
+            
             gameObject.SetActive(false);
         }
     }

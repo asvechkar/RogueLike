@@ -15,15 +15,15 @@ namespace RogueLike.Scripts.GameCore.LevelSystem
 
         private void OnEnable()
         {
-            EventBus.Subscribe<OnLevelChanged>(LevelUp);
+            EventBus.Subscribe<OnGameLevelChanged>(LevelUp);
         }
 
         private void OnDisable()
         {
-            EventBus.Unsubscribe<OnLevelChanged>(LevelUp);
+            EventBus.Unsubscribe<OnGameLevelChanged>(LevelUp);
         }
 
-        private void LevelUp(OnLevelChanged evt)
+        private void LevelUp(OnGameLevelChanged evt)
         {
             levels[evt.LevelNumber - 1].Deactivate();
             levels[evt.LevelNumber].Activate();

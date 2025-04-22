@@ -8,7 +8,7 @@ namespace RogueLike.Scripts.GameCore.Pool
     {
         [SerializeField] private GameObject prefab;
         
-        private List<GameObject> _objectPool = new();
+        private readonly List<GameObject> _objectPool = new();
 
         public GameObject GetFromPool()
         {
@@ -22,8 +22,8 @@ namespace RogueLike.Scripts.GameCore.Pool
             newObject.SetActive(true);
             return newObject;
         }
-        
-        public GameObject Create()
+
+        private GameObject Create()
         {
             var newObject = Instantiate(prefab);
             newObject.SetActive(false);

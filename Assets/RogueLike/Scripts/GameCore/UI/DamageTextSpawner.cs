@@ -16,10 +16,10 @@ namespace RogueLike.Scripts.GameCore.UI
 
         private void Awake()
         {
-            EventBus.Subscribe<OnDamageReceived>(Activate);
+            EventBus.Subscribe<OnDamageReceived>(ShowDamageText);
         }
 
-        private void Activate(OnDamageReceived evt)
+        private void ShowDamageText(OnDamageReceived evt)
         {
             var target = evt.Target;
             var damage = evt.Damage;

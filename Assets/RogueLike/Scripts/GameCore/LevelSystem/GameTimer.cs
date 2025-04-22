@@ -39,7 +39,7 @@ namespace RogueLike.Scripts.GameCore.LevelSystem
                 {
                     _seconds = 0;
                     _minutes++;
-                    EventBus.Invoke(new OnLevelChanged(_minutes));
+                    EventBus.Invoke(new OnGameLevelChanged(_minutes));
                 }
 
                 TimeTextFormat();

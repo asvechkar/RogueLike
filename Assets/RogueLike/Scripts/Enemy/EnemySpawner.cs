@@ -1,8 +1,8 @@
 using System.Collections;
 using Reflex.Attributes;
+using RogueLike.Scripts.Events;
 using RogueLike.Scripts.GameCore;
 using RogueLike.Scripts.GameCore.Pool;
-using RogueLike.Scripts.Player;
 using UnityEngine;
 
 namespace RogueLike.Scripts.Enemy
@@ -14,25 +14,35 @@ namespace RogueLike.Scripts.Enemy
         [SerializeField] private Transform enemyContainer;
         [SerializeField] private ObjectPool enemyPool;
 
-        [Inject] private PlayerMovement _playerMovement;
         [Inject] private GetRandomSpawnPoint _getRandomSpawn;
         
         private WaitForSeconds _interval;
         private Coroutine _spawnCoroutine;
+        private Vector3 _playerPosition;
 
         private void Start()
         {
             _interval = new WaitForSeconds(timeToSpawn);
         }
 
+        private void GetPlayerPosition(OnPlayerMoved evt) => _playerPosition = evt.Position;
+
+        private void OnEnable() => EventBus.Subscribe<OnPlayerMoved>(GetPlayerPosition);
+
+        private void OnDisable() => EventBus.Unsubscribe<OnPlayerMoved>(GetPlayerPosition);
+
         private IEnumerator Spawn()
         {
             while (true)
             {
-                transform.position = _playerMovement.transform.position;
-                var enemy = enemyPool.GetFromPool();
-                enemy.transform.SetParent(enemyContainer);
-                enemy.transform.position = _getRandomSpawn.GetRandomPoint(minPos, maxPos);
+                if (_playerPosition != Vector3.zero)
+                {
+                    transform.position = _playerPosition;
+                    var enemy = enemyPool.GetFromPool();
+                    enemy.transform.SetParent(enemyContainer);
+                    enemy.transform.position = _getRandomSpawn.GetRandomPoint(minPos, maxPos);
+                }
+
                 yield return _interval;
             }
         }

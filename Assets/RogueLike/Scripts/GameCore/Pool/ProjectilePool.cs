@@ -1,4 +1,4 @@
-using RogueLike.Scripts.Player.Weapon;
+using RogueLike.Scripts.Weapon;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -16,6 +16,12 @@ namespace RogueLike.Scripts.GameCore.Pool
         public GameObject GetProjectile()
         {
             return _pool.Get();
+        }
+
+        public T GetProjectile<T>() where T : Component
+        {
+            var poolItem = _pool.Get();
+            return poolItem.GetComponent<T>();
         }
 
         private void Awake()
@@ -41,7 +47,7 @@ namespace RogueLike.Scripts.GameCore.Pool
 
         private void OnGetFromPool(GameObject projectile)
         {
-            projectile.SetActive(true);
+            projectile.SetActive(false);
         }
 
         private void OnReleaseFromPool(GameObject projectile)

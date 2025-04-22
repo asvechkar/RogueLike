@@ -1,5 +1,3 @@
-using System;
-using Reflex.Attributes;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Player;
 using UnityEngine;
@@ -9,7 +7,6 @@ namespace RogueLike.Scripts.GameCore.ExperienceSystem
     public class Experience: MonoBehaviour
     {
         [SerializeField] private int value;
-        [Inject] private PlayerHealth playerHealth;
         
         private float _distanceToPickup = 1.5f;
 
@@ -21,14 +18,18 @@ namespace RogueLike.Scripts.GameCore.ExperienceSystem
                 gameObject.SetActive(false);
             }
         }
+        
+        private void OnEnable() => EventBus.Subscribe<OnPlayerMoved>(MoveToPlayer);
 
-        private void Update()
+        private void OnDisable() => EventBus.Unsubscribe<OnPlayerMoved>(MoveToPlayer);
+
+        private void MoveToPlayer(OnPlayerMoved evt)
         {
-            if (Vector3.Distance(transform.position, playerHealth.transform.position) <= _distanceToPickup)
+            if (Vector3.Distance(transform.position, evt.Position) <= _distanceToPickup)
             {
                 transform.position = Vector3.MoveTowards(
                     transform.position, 
-                    playerHealth.transform.position, 
+                    evt.Position, 
                     2f * Time.deltaTime
                     );
             }

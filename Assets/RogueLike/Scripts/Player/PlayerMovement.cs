@@ -1,5 +1,6 @@
+using RogueLike.Scripts.Events;
+using RogueLike.Scripts.Events.InputEvents;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace RogueLike.Scripts.Player
 {
@@ -18,8 +19,6 @@ namespace RogueLike.Scripts.Player
         
         private Vector3 _movement;
         private bool _isRunning;
-        public Vector3 Movement => _movement;
-        
         private Vector2 _lastDirection;
 
         private void Update()
@@ -44,16 +43,27 @@ namespace RogueLike.Scripts.Player
             animator.SetFloat(Speed, _movement.sqrMagnitude);
             animator.SetFloat(LastDirectionX, _lastDirection.x);
             animator.SetFloat(LastDirectionY, _lastDirection.y);
+            
+            EventBus.Invoke(new OnPlayerMoved(transform.position));
+        }
+        
+        private void OnEnable()
+        {
+            EventBus.Subscribe<OnMoved>(Move);
+        }
+        
+        private void OnDisable()
+        {
+            EventBus.Unsubscribe<OnMoved>(Move);
         }
 
-        public void Move(InputAction.CallbackContext context)
+        private void Move(OnMoved evt)
         {
             if (_movement != Vector3.zero)
             {
                 _lastDirection = new Vector2(_movement.x, _movement.y);
             }
-            var movement = context.ReadValue<Vector2>();
-            _movement = new Vector3(movement.x, movement.y, 0);
+            _movement = new Vector3(evt.Position.x, evt.Position.y, 0);
         }
     }
 }
