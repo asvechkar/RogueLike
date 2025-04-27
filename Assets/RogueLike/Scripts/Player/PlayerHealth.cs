@@ -1,5 +1,8 @@
 using System.Collections;
 using RogueLike.Scripts.Events;
+using RogueLike.Scripts.Events.Game;
+using RogueLike.Scripts.Events.Loot;
+using RogueLike.Scripts.Events.Player;
 using RogueLike.Scripts.GameCore.Health;
 using UnityEngine;
 
@@ -18,7 +21,7 @@ namespace RogueLike.Scripts.Player
             
             if (CurrentHealth <= 0)
             {
-                Debug.Log("Player is dead");
+                EventBus.Invoke(new OnGameOver("You lose :("));
             }
         }
 
@@ -30,14 +33,16 @@ namespace RogueLike.Scripts.Player
         private void OnEnable()
         {
             EventBus.Subscribe<OnPlayerLevelChanged>(GetFullHealth);
+            EventBus.Subscribe<OnPickupHeart>(HealFromLoot);
         }
         
         private void OnDisable()
         {
             EventBus.Unsubscribe<OnPlayerLevelChanged>(GetFullHealth);
+            EventBus.Unsubscribe<OnPickupHeart>(HealFromLoot);
         }
 
-        public void Heal(float healAmount)
+        private void Heal(float healAmount)
         {
             TakeHealth(healAmount);
             EventBus.Invoke(new OnHealthChanged(MaxHealth, CurrentHealth));
@@ -47,6 +52,11 @@ namespace RogueLike.Scripts.Player
         {
             TakeHealth(evt.Level * 10);
             EventBus.Invoke(new OnHealthChanged(MaxHealth, CurrentHealth));
+        }
+
+        private void HealFromLoot(OnPickupHeart evt)
+        {
+            Heal(evt.Health);
         }
 
         private IEnumerator Regenerate()

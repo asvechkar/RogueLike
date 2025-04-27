@@ -1,5 +1,6 @@
 using System.Collections;
 using RogueLike.Scripts.Events;
+using RogueLike.Scripts.Events.Player;
 using UnityEngine;
 
 namespace RogueLike.Scripts.Enemy
@@ -15,10 +16,7 @@ namespace RogueLike.Scripts.Enemy
         
         private Vector3 _direction;
         
-        private WaitForSeconds _checkTime = new(3f);
-        private Coroutine _distanceToHide;
         private float _originalSpeed;
-        private Vector3 _playerPosition;
 
         private void Awake()
         {
@@ -29,42 +27,20 @@ namespace RogueLike.Scripts.Enemy
         {
             EventBus.Subscribe<OnPlayerMoved>(Move);
             speed = _originalSpeed;
-            _distanceToHide = StartCoroutine(CheckDistanceToHide());
         }
 
         private void OnDisable()
         {
             EventBus.Unsubscribe<OnPlayerMoved>(Move);
-            if (_distanceToHide == null) return;
-            
-            StopCoroutine(_distanceToHide);
         }
 
         private void Move(OnPlayerMoved evt)
         {
-            _playerPosition = evt.Position;
             _direction = (evt.Position - transform.position).normalized;
             transform.position += _direction * (speed * Time.deltaTime);
             
             animator.SetFloat(Horizontal, _direction.x);
             animator.SetFloat(Vertical, _direction.y);
-        }
-
-        private IEnumerator CheckDistanceToHide()
-        {
-            while (true)
-            {
-                if (_playerPosition != Vector3.zero)
-                {
-                    var distance = Vector3.Distance(transform.position, _playerPosition);
-                    if (distance >= 20f)
-                    {
-                        gameObject.SetActive(false);
-                    }
-                }
-
-                yield return _checkTime;
-            }
         }
         
         public void Freeze(float multiplier)

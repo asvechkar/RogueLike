@@ -154,12 +154,12 @@ TextureImporter:
       name: Heart_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 9
-        width: 16
-        height: 14
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -176,12 +176,12 @@ TextureImporter:
       name: Heart_1
       rect:
         serializedVersion: 2
-        x: 41
-        y: 10
-        width: 17
-        height: 15
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -198,12 +198,12 @@ TextureImporter:
       name: Heart_2
       rect:
         serializedVersion: 2
-        x: 72
-        y: 9
-        width: 20
-        height: 18
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -220,12 +220,12 @@ TextureImporter:
       name: Heart_3
       rect:
         serializedVersion: 2
-        x: 104
-        y: 9
-        width: 16
-        height: 13
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -234,28 +234,6 @@ TextureImporter:
       bones: []
       spriteID: d285521d3f674e960800000000000000
       internalID: 7630354458230478893
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Heart_4
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 19
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d09e58f21f0098800800000000000000
-      internalID: 615023859997206797
       vertices: []
       indices: 
       edges: []
@@ -278,7 +256,6 @@ TextureImporter:
       Heart_1: -4195582761621981391
       Heart_2: 516283494600122218
       Heart_3: 7630354458230478893
-      Heart_4: 615023859997206797
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

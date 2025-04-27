@@ -1,5 +1,6 @@
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.InputEvents;
+using RogueLike.Scripts.Events.Player;
 using RogueLike.Scripts.GameCore;
 using RogueLike.Scripts.GameCore.Pool;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace RogueLike.Scripts.Weapon.Bow
         [SerializeField] private Transform shootPoint, weaponTransform;
         [SerializeField] private ProjectilePool arrowPool;
         [SerializeField] private Animator animator;
+        [SerializeField] private AudioSource audioSource;
         
         private Vector3 _direction;
         private float _duration, _speed;
@@ -54,7 +56,6 @@ namespace RogueLike.Scripts.Weapon.Bow
         {
             if (CurrentLevel < MaxLevel)
             {
-                Debug.Log($"Bow Level UP {evt.Level}");
                 LevelUp();
             }
         }
@@ -72,6 +73,7 @@ namespace RogueLike.Scripts.Weapon.Bow
 
         public void ThrowArrow()
         {
+            audioSource.Play();
             var arrow = arrowPool.GetProjectile();
             arrow.GetComponent<Arrow>().Init(new ProjectileParams(_speed, _duration, Damage, CurrentLevel));
             arrow.transform.SetParent(container);

@@ -1,5 +1,6 @@
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.InputEvents;
+using RogueLike.Scripts.Events.Player;
 using RogueLike.Scripts.GameCore;
 using RogueLike.Scripts.GameCore.Pool;
 using UnityEngine;
