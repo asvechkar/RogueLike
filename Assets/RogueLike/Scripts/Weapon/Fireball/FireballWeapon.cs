@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using RogueLike.Scripts.Events;
-using RogueLike.Scripts.Events.Player;
 using RogueLike.Scripts.GameCore;
 using RogueLike.Scripts.GameCore.Pool;
 using UnityEngine;
@@ -24,12 +24,25 @@ namespace RogueLike.Scripts.Weapon.Fireball
 
         protected override void Start()
         {
+            WeaponType = WeaponType.Fireball;
             base.Start();
             SetupWeapon();
             Activate();
         }
 
-        public override void LevelUp()
+        private void OnEnable()
+        {
+            WeaponManager.AddWeapon(this);
+            EventBus.Subscribe<OnWeaponLevelUpdated>(ChangeLevel);
+        }
+
+        private void OnDisable()
+        {
+            WeaponManager.RemoveWeapon(this);
+            EventBus.Unsubscribe<OnWeaponLevelUpdated>(ChangeLevel);
+        }
+
+        protected override void LevelUp()
         {
             base.LevelUp();
             SetupWeapon();
@@ -43,12 +56,9 @@ namespace RogueLike.Scripts.Weapon.Fireball
             _timeBetweenAttack = new WaitForSeconds(WeaponStats[CurrentLevel - 1].TimeBetweenAttack);
         }
         
-        private void OnEnable() => EventBus.Subscribe<OnPlayerLevelChanged>(ChangeLevel);
-        private void OnDisable() => EventBus.Unsubscribe<OnPlayerLevelChanged>(ChangeLevel);
-
-        private void ChangeLevel(OnPlayerLevelChanged evt)
+        private void ChangeLevel(OnWeaponLevelUpdated evt)
         {
-            if (CurrentLevel < MaxLevel)
+            if (WeaponType == evt.WeaponType && CurrentLevel < MaxLevel)
             {
                 LevelUp();
             }

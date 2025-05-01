@@ -1,17 +1,12 @@
 using System.Collections;
 using RogueLike.Scripts.Enemy;
 using UnityEngine;
-using UnityEngine.Pool;
 using Random = UnityEngine.Random;
 
 namespace RogueLike.Scripts.Weapon
 {
     public abstract class Projectile : MonoBehaviour
     {
-        private IObjectPool<GameObject> _pool;
-
-        public IObjectPool<GameObject> Pool { set => _pool = value; }
-
         protected WaitForSeconds Timer;
         protected float Damage;
 

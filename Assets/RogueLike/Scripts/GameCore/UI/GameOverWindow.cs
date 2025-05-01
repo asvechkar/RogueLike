@@ -1,3 +1,5 @@
+using RogueLike.Scripts.Events;
+using RogueLike.Scripts.Events.Game;
 using TMPro;
 using UnityEngine;
 
@@ -10,6 +12,11 @@ namespace RogueLike.Scripts.GameCore.UI
         public void SetResult(string result)
         {
             resultText.text = result;
+        }
+        
+        public void OnRestartClicked()
+        {
+            EventBus.Invoke(new OnGameStarted());
         }
     }
 }

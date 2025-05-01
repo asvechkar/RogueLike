@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 8458717284255556943}
   - component: {fileID: 3889927015226215147}
   - component: {fileID: 1491637724914785854}
+  - component: {fileID: 5846085244531034349}
   m_Layer: 10
   m_Name: Experience
   m_TagString: Untagged
@@ -159,7 +160,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 4
-  audioSource: {fileID: 1491637724914785854}
 --- !u!58 &8458717284255556943
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -306,3 +306,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5846085244531034349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7044463973439766552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91445c101cf42f6a06af180d2ad221d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

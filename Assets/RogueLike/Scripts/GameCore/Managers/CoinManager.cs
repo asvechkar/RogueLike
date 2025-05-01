@@ -8,18 +8,23 @@ namespace RogueLike.Scripts.GameCore.Managers
 {
     public class CoinManager : MonoBehaviour
     {
-        private int _coins;
+        public int Coins { get; private set; }
 
         private void Start()
         {
-            _coins = 0;
+            Coins = 0;
         }
 
         private void AddCoins(OnPickupCoins evt)
         {
-            var oldAmount = _coins;
-            _coins += evt.Coins;
-            EventBus.Invoke(new OnCoinsChanged(oldAmount, _coins));
+            Coins += evt.Coins;
+            EventBus.Invoke(new OnCoinsChanged(Coins));
+        }
+        
+        public void SpendCoins(int amount)
+        {
+            Coins -= amount;
+            EventBus.Invoke(new OnCoinsChanged(Coins));
         }
 
         private void OnEnable()

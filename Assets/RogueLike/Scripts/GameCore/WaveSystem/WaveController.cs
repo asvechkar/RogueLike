@@ -26,9 +26,9 @@ namespace RogueLike.Scripts.GameCore.WaveSystem
 
         private void NextWave(OnWaveChanged evt)
         {
-            if (evt.WaveNumber > waves.Count)
+            if (evt.WaveNumber >= waves.Count - 1)
             {
-                EventBus.Invoke(new OnGameOver("You win!"));
+                EventBus.Invoke(new OnGameOver("You won!"));
             }
             else
             {

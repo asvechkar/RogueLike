@@ -9,11 +9,11 @@ namespace RogueLike.Scripts.GameCore.UI
     {
         [SerializeField] private Image playerHealthImage;
         
-        private void OnEnable() => EventBus.Subscribe<OnHealthChanged>(UpdateHealthBar);
+        private void OnEnable() => EventBus.Subscribe<OnPlayerHealthChanged>(UpdateHealthBar);
 
-        private void OnDisable() => EventBus.Unsubscribe<OnHealthChanged>(UpdateHealthBar);
+        private void OnDisable() => EventBus.Unsubscribe<OnPlayerHealthChanged>(UpdateHealthBar);
 
-        private void UpdateHealthBar(OnHealthChanged evt)
+        private void UpdateHealthBar(OnPlayerHealthChanged evt)
         {
             playerHealthImage.fillAmount = Mathf.Clamp01(evt.CurrentHealth / evt.MaxHealth);
         }

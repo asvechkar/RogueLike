@@ -1,4 +1,5 @@
 using Reflex.Core;
+using RogueLike.Scripts.GameCore.Managers;
 using UnityEngine;
 
 namespace RogueLike.Scripts.DI
@@ -7,6 +8,7 @@ namespace RogueLike.Scripts.DI
     {
         public void InstallBindings(ContainerBuilder builder)
         {
+            builder.AddSingleton(typeof(GameManager));
         }
     }
 }

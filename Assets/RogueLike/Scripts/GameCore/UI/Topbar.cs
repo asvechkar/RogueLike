@@ -1,4 +1,3 @@
-using System.Collections;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.Game;
 using RogueLike.Scripts.Events.Player;
@@ -24,18 +23,14 @@ namespace RogueLike.Scripts.GameCore.UI
             waves.text = $"Wave: {evt.WaveNumber + 1}";
         }
 
-        private void UpdateCoins(OnCoinsChanged evt)
+        private void UpdateScore(OnScoreChanged evt)
         {
-            StartCoroutine(IncreaseCoins(evt.OldAmount, evt.NewAmount));
+            playerScore.text = $"Score: {evt.Score}";
         }
 
-        private IEnumerator IncreaseCoins(int oldAmount, int newAmount)
+        private void UpdateCoins(OnCoinsChanged evt)
         {
-            for (var i = oldAmount; i <= newAmount; i++)
-            {
-                coins.text = $"Coins: {i}";
-                yield return null;
-            }
+            coins.text = $"Coins: {evt.Amount}";
         }
         
         private void OnEnable()
@@ -43,6 +38,7 @@ namespace RogueLike.Scripts.GameCore.UI
             EventBus.Subscribe<OnPlayerLevelChanged>(UpdatePlayerLevel);
             EventBus.Subscribe<OnWaveChanged>(UpdateWaves);
             EventBus.Subscribe<OnCoinsChanged>(UpdateCoins);
+            EventBus.Subscribe<OnScoreChanged>(UpdateScore);
         }
 
         private void OnDisable()
@@ -50,6 +46,7 @@ namespace RogueLike.Scripts.GameCore.UI
             EventBus.Unsubscribe<OnPlayerLevelChanged>(UpdatePlayerLevel);
             EventBus.Unsubscribe<OnWaveChanged>(UpdateWaves);
             EventBus.Unsubscribe<OnCoinsChanged>(UpdateCoins);
+            EventBus.Unsubscribe<OnScoreChanged>(UpdateScore);
         }
     }
 }

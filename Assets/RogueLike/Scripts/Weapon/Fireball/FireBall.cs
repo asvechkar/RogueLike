@@ -15,7 +15,6 @@ namespace RogueLike.Scripts.Weapon.Fireball
         protected void OnTriggerEnter2D(Collider2D other)
         {
             Debug.Log("Fireball");
-            Debug.Log(_params.Damage);
             if (!other.gameObject.TryGetComponent(out EnemyHealth enemy)) return;
 
             enemy.TakeDamage(_params.Damage);

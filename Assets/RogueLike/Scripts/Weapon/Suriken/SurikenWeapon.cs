@@ -1,10 +1,8 @@
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.InputEvents;
-using RogueLike.Scripts.Events.Player;
 using RogueLike.Scripts.GameCore;
 using RogueLike.Scripts.GameCore.Pool;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 namespace RogueLike.Scripts.Weapon.Suriken
@@ -18,23 +16,31 @@ namespace RogueLike.Scripts.Weapon.Suriken
         private Transform container;
         private float _duration, _speed, _range;
         private Vector3 _direction;
-        
+
+        protected override void Start()
+        {
+            WeaponType = WeaponType.Suriken;
+            base.Start();
+        }
+
         private void OnEnable()
         {
+            WeaponManager.AddWeapon(this);
             Activate();
             EventBus.Subscribe<OnAttacked>(SpawnSuriken);
-            EventBus.Subscribe<OnPlayerLevelChanged>(ChangeLevel);
+            EventBus.Subscribe<OnWeaponLevelUpdated>(ChangeLevel);
         }
         
         private void OnDisable()
         {
+            WeaponManager.RemoveWeapon(this);
             EventBus.Unsubscribe<OnAttacked>(SpawnSuriken);
-            EventBus.Unsubscribe<OnPlayerLevelChanged>(ChangeLevel);
+            EventBus.Unsubscribe<OnWeaponLevelUpdated>(ChangeLevel);
         }
         
-        private void ChangeLevel(OnPlayerLevelChanged evt)
+        private void ChangeLevel(OnWeaponLevelUpdated evt)
         {
-            if (CurrentLevel < MaxLevel)
+            if (WeaponType == evt.WeaponType && CurrentLevel < MaxLevel)
             {
                 LevelUp();
             }

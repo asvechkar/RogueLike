@@ -1,6 +1,5 @@
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.InputEvents;
-using RogueLike.Scripts.Events.Player;
 using RogueLike.Scripts.GameCore;
 using RogueLike.Scripts.GameCore.Pool;
 using UnityEngine;
@@ -15,7 +14,7 @@ namespace RogueLike.Scripts.Weapon.Bow
         private Camera mainCamera;
         
         [SerializeField] private Transform shootPoint, weaponTransform;
-        [SerializeField] private ProjectilePool arrowPool;
+        [SerializeField] private GameObjectPool arrowPool;
         [SerializeField] private Animator animator;
         [SerializeField] private AudioSource audioSource;
         
@@ -23,17 +22,25 @@ namespace RogueLike.Scripts.Weapon.Bow
         private float _duration, _speed;
         private Transform container;
 
+        protected override void Start()
+        {
+            WeaponType = WeaponType.Bow;
+            base.Start();
+        }
+
         private void OnEnable()
         {
+            WeaponManager.AddWeapon(this);
             Activate();
-            EventBus.Subscribe<OnPlayerLevelChanged>(ChangeLevel);
             EventBus.Subscribe<OnAttacked>(StartThrowArrow);
+            EventBus.Subscribe<OnWeaponLevelUpdated>(ChangeLevel);
         }
 
         private void OnDisable()
         {
-            EventBus.Unsubscribe<OnPlayerLevelChanged>(ChangeLevel);
+            WeaponManager.RemoveWeapon(this);
             EventBus.Unsubscribe<OnAttacked>(StartThrowArrow);
+            EventBus.Unsubscribe<OnWeaponLevelUpdated>(ChangeLevel);
         }
 
         private void Update()
@@ -52,9 +59,9 @@ namespace RogueLike.Scripts.Weapon.Bow
             _duration = currentStats.Duration;
         }
 
-        private void ChangeLevel(OnPlayerLevelChanged evt)
+        private void ChangeLevel(OnWeaponLevelUpdated evt)
         {
-            if (CurrentLevel < MaxLevel)
+            if (WeaponType == evt.WeaponType && CurrentLevel < MaxLevel)
             {
                 LevelUp();
             }
@@ -74,7 +81,7 @@ namespace RogueLike.Scripts.Weapon.Bow
         public void ThrowArrow()
         {
             audioSource.Play();
-            var arrow = arrowPool.GetProjectile();
+            var arrow = arrowPool.GetFromPool();
             arrow.GetComponent<Arrow>().Init(new ProjectileParams(_speed, _duration, Damage, CurrentLevel));
             arrow.transform.SetParent(container);
             arrow.transform.position = shootPoint.position;

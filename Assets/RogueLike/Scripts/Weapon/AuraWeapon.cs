@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using RogueLike.Scripts.Enemy;
 using RogueLike.Scripts.Events;
-using RogueLike.Scripts.Events.Player;
+using RogueLike.Scripts.Events.Enemy;
 using RogueLike.Scripts.GameCore;
 using UnityEngine;
 
@@ -20,30 +20,33 @@ namespace RogueLike.Scripts.Weapon
 
         protected override void Start()
         {
+            WeaponType = WeaponType.Aura;
             Activate();
         }
 
         private void OnEnable()
         {
-            EventBus.Subscribe<OnEnemyDeath>(RemoveDeadEnemies);
-            EventBus.Subscribe<OnPlayerLevelChanged>(ChangeLevel);
+            WeaponManager.AddWeapon(this);
+            EventBus.Subscribe<OnEnemyDead>(RemoveDeadEnemies);
+            EventBus.Subscribe<OnWeaponLevelUpdated>(ChangeLevel);
         }
 
         private void OnDisable()
         {
-            EventBus.Unsubscribe<OnEnemyDeath>(RemoveDeadEnemies);
-            EventBus.Unsubscribe<OnPlayerLevelChanged>(ChangeLevel);
+            WeaponManager.RemoveWeapon(this);
+            EventBus.Unsubscribe<OnEnemyDead>(RemoveDeadEnemies);
+            EventBus.Unsubscribe<OnWeaponLevelUpdated>(ChangeLevel);
         }
         
-        private void ChangeLevel(OnPlayerLevelChanged evt)
+        private void ChangeLevel(OnWeaponLevelUpdated evt)
         {
-            if (CurrentLevel < MaxLevel)
+            if (WeaponType == evt.WeaponType && CurrentLevel < MaxLevel)
             {
                 LevelUp();
             }
         }
 
-        private void RemoveDeadEnemies(OnEnemyDeath evt)
+        private void RemoveDeadEnemies(OnEnemyDead evt)
         {
             _enemiesInZone.Remove(evt.Enemy);
         }

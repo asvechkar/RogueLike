@@ -12,6 +12,11 @@ namespace RogueLike.Scripts.GameCore.Health
         public float CurrentHealth => currentHealth;
         
         private void OnEnable() => currentHealth = maxHealth;
+
+        public void SetMaxHealth(float health)
+        {
+            maxHealth = health;
+        }
         
         public virtual void TakeDamage(float damage)
         {

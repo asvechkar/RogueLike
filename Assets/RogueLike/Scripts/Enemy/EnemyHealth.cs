@@ -1,5 +1,6 @@
 using System.Collections;
 using RogueLike.Scripts.Events;
+using RogueLike.Scripts.Events.Enemy;
 using RogueLike.Scripts.GameCore.Health;
 using UnityEngine;
 
@@ -13,11 +14,11 @@ namespace RogueLike.Scripts.Enemy
         {
             base.TakeDamage(damage);
             
-            EventBus.Invoke(new OnDamageReceived(transform, (int)damage));
+            EventBus.Invoke(new OnEnemyDamaged(transform, (int)damage));
 
             if (CurrentHealth <= 0)
             {
-                EventBus.Invoke(new OnEnemyDeath(this));
+                EventBus.Invoke(new OnEnemyDead(this));
                 gameObject.SetActive(false);
             }
         }

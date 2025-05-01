@@ -8,19 +8,33 @@ namespace RogueLike.Scripts.GameCore.LootSystem
     public class Experience: Loot
     {
         [SerializeField] private int value;
-        [SerializeField] private AudioSource audioSource;
+        
+        private AudioSource _audioSource;
+        private SpriteRenderer _spriteRenderer;
+        private CircleCollider2D _circleCollider2D;
         private readonly float _distanceToPickup = 1.5f;
+        
+        private void Start()
+        {
+            _audioSource = GetComponent<AudioSource>();
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            _circleCollider2D = GetComponent<CircleCollider2D>();
+        }
 
         protected override void Collect()
         {
             EventBus.Invoke(new OnPickupExperience(value));
-            audioSource.Play();
+            
+            _spriteRenderer.enabled = false;
+            _circleCollider2D.enabled = false;
+            _audioSource.Play();
+            
             StartCoroutine(DeactivateAfterAudio());
         }
         
         private System.Collections.IEnumerator DeactivateAfterAudio()
         {
-            yield return new WaitForSeconds(audioSource.clip.length);
+            yield return new WaitForSeconds(_audioSource.clip.length);
             base.Collect();
         }
         

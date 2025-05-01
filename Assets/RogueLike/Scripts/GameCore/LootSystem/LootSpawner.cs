@@ -1,4 +1,5 @@
 using RogueLike.Scripts.Events;
+using RogueLike.Scripts.Events.Enemy;
 using RogueLike.Scripts.GameCore.Pool;
 using UnityEngine;
 
@@ -13,15 +14,15 @@ namespace RogueLike.Scripts.GameCore.LootSystem
 
         private void OnEnable()
         {
-            EventBus.Subscribe<OnEnemyDeath>(Spawn);
+            EventBus.Subscribe<OnEnemyDead>(Spawn);
         }
 
         private void OnDisable()
         {
-            EventBus.Unsubscribe<OnEnemyDeath>(Spawn);
+            EventBus.Unsubscribe<OnEnemyDead>(Spawn);
         }
 
-        private void Spawn(OnEnemyDeath evt)
+        private void Spawn(OnEnemyDead evt)
         {
             var chance = Random.Range(0f, 100f);
 

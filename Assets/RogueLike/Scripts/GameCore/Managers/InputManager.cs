@@ -1,3 +1,4 @@
+using System;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.Game;
 using RogueLike.Scripts.Events.InputEvents;
@@ -18,7 +19,12 @@ namespace RogueLike.Scripts.GameCore.Managers
             if (!context.performed) return;
             EventBus.Invoke(new OnAttacked());
         }
-        
+
+        private void Start()
+        {
+            GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
+        }
+
         private void PauseGame(OnGamePaused evt)
         {
             GetComponent<PlayerInput>().SwitchCurrentActionMap("UI");

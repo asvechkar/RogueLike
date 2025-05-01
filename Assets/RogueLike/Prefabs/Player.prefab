@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e916af8e5244e148e00ab74ed6f377e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 9132064256147288527, guid: 66088744f52114603a4cd474946c7d1c, type: 3}
+  poolablePrefab: {fileID: 9132064256147288527, guid: 66088744f52114603a4cd474946c7d1c, type: 3}
   collectionCheck: 1
   defaultCapacity: 20
   maxSize: 100
@@ -1204,6 +1204,7 @@ GameObject:
   - component: {fileID: 5878710148801028116}
   - component: {fileID: 3694453264096115878}
   - component: {fileID: 1596770354855364796}
+  - component: {fileID: -1921932778324162385}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1332,6 +1333,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.3591773, y: 0.43800497}
   m_EdgeRadius: 0
+--- !u!114 &-1921932778324162385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8692341695719930250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20620ae30fdd0164c9bb5bdc717d3ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _injectionStrategy: 2
 --- !u!1 &9025681980737346526
 GameObject:
   m_ObjectHideFlags: 0

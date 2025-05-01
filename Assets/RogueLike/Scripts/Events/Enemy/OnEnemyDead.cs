@@ -1,11 +1,11 @@
 using RogueLike.Scripts.Enemy;
 
-namespace RogueLike.Scripts.Events
+namespace RogueLike.Scripts.Events.Enemy
 {
-    public class OnEnemyDeath
+    public class OnEnemyDead
     {
         public EnemyHealth Enemy { get; private set; }
-        public OnEnemyDeath(EnemyHealth enemy)
+        public OnEnemyDead(EnemyHealth enemy)
         {
             Enemy = enemy;
         }

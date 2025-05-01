@@ -2,13 +2,11 @@ namespace RogueLike.Scripts.Events.Player
 {
     public class OnCoinsChanged
     {
-        public int NewAmount { get; private set; }
-        public int OldAmount { get; private set; }
+        public int Amount { get; private set; }
         
-        public OnCoinsChanged(int oldAmount, int newAmount)
+        public OnCoinsChanged(int amount)
         {
-            NewAmount = newAmount;
-            OldAmount = oldAmount;
+            Amount = amount;
         }
     }
 }

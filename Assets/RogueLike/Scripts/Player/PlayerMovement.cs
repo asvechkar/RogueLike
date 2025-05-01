@@ -1,6 +1,8 @@
+using Reflex.Attributes;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.InputEvents;
 using RogueLike.Scripts.Events.Player;
+using RogueLike.Scripts.GameCore.Managers;
 using UnityEngine;
 
 namespace RogueLike.Scripts.Player
@@ -18,9 +20,16 @@ namespace RogueLike.Scripts.Player
         [SerializeField] private float runSpeed;
         [SerializeField] private Animator animator;
         
+        [Inject] private PlayerManager _playerManager;
+        
         private Vector3 _movement;
         private bool _isRunning;
         private Vector2 _lastDirection;
+
+        private void Start()
+        {
+            _playerManager.SetSpeed(speed);
+        }
 
         private void Update()
         {
@@ -50,12 +59,15 @@ namespace RogueLike.Scripts.Player
         
         private void OnEnable()
         {
+            EventBus.Invoke(new OnPlayerSpeedChanged(speed));
             EventBus.Subscribe<OnMoved>(Move);
+            EventBus.Subscribe<OnPlayerSkillChanged>(UpdateSpeed);
         }
         
         private void OnDisable()
         {
             EventBus.Unsubscribe<OnMoved>(Move);
+            EventBus.Unsubscribe<OnPlayerSkillChanged>(UpdateSpeed);
         }
 
         private void Move(OnMoved evt)
@@ -65,6 +77,13 @@ namespace RogueLike.Scripts.Player
                 _lastDirection = new Vector2(_movement.x, _movement.y);
             }
             _movement = new Vector3(evt.Position.x, evt.Position.y, 0);
+        }
+
+        private void UpdateSpeed(OnPlayerSkillChanged evt)
+        {
+            if (evt.Skill != PlayerSkillType.Speed) return;
+            speed = _playerManager.Speed;
+            EventBus.Invoke(new OnPlayerSpeedChanged(speed));
         }
     }
 }

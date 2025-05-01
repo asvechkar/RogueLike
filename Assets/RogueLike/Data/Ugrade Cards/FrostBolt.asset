@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abee70af027d4ab4a602f31eef523486, type: 3}
-  m_Name: HealthUpgradeCard
+  m_Name: FrostBolt
   m_EditorClassIdentifier: 
-  id: 1
-  cost: 10
-  title: Health
-  description: +10 HP
-  icon: {fileID: 2955297733908575915, guid: 8ef5fe092c5b94fd38748e3142c3ca63, type: 3}
+  cost: 1
+  title: Frostbolt
+  description: +1 lvl
+  icon: {fileID: 6032595671685482921, guid: bc211c3be3ed84e209b56d3195331efc, type: 3}
+  upgradeType: 1
+  weaponType: 2

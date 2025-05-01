@@ -1,13 +1,13 @@
 using UnityEngine;
 
-namespace RogueLike.Scripts.Events
+namespace RogueLike.Scripts.Events.Enemy
 {
-    public class OnDamageReceived
+    public class OnEnemyDamaged
     {
         public readonly int Damage;
         public readonly Transform Target;
 
-        public OnDamageReceived(Transform target, int damage)
+        public OnEnemyDamaged(Transform target, int damage)
         {
             Target = target;
             Damage = damage;

@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using RogueLike.Scripts.Events;
 using RogueLike.Scripts.GameCore;
 using RogueLike.Scripts.GameCore.Pool;
 using UnityEngine;
@@ -13,9 +15,31 @@ namespace RogueLike.Scripts.Weapon.Trap
         private WaitForSeconds _timeBetweenAttacks;
         private Coroutine _trapCoroutine;
 
+        protected override void Start()
+        {
+            WeaponType = WeaponType.Trap;
+            base.Start();
+        }
+        
+        private void ChangeLevel(OnWeaponLevelUpdated evt)
+        {
+            if (WeaponType == evt.WeaponType && CurrentLevel < MaxLevel)
+            {
+                LevelUp();
+            }
+        }
+
         private void OnEnable()
         {
+            WeaponManager.AddWeapon(this);
             Activate();
+            EventBus.Subscribe<OnWeaponLevelUpdated>(ChangeLevel);
+        }
+
+        private void OnDisable()
+        {
+            WeaponManager.RemoveWeapon(this);
+            EventBus.Unsubscribe<OnWeaponLevelUpdated>(ChangeLevel);
         }
 
         public void Activate()

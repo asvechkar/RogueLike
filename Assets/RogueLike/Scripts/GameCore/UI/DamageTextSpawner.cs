@@ -1,6 +1,6 @@
-using System;
 using System.Collections;
 using RogueLike.Scripts.Events;
+using RogueLike.Scripts.Events.Enemy;
 using RogueLike.Scripts.GameCore.Pool;
 using TMPro;
 using UnityEngine;
@@ -10,16 +10,21 @@ namespace RogueLike.Scripts.GameCore.UI
 {
     public class DamageTextSpawner : MonoBehaviour
     {
-        [SerializeField] private ObjectPool textPool;
+        [SerializeField] private GameObjectPool textPool;
         
         private readonly WaitForSeconds _wait = new(0.05f);
 
-        private void Awake()
+        private void OnEnable()
         {
-            EventBus.Subscribe<OnDamageReceived>(ShowDamageText);
+            EventBus.Subscribe<OnEnemyDamaged>(ShowDamageText);
         }
 
-        private void ShowDamageText(OnDamageReceived evt)
+        private void OnDisable()
+        {
+            EventBus.Unsubscribe<OnEnemyDamaged>(ShowDamageText);
+        }
+
+        private void ShowDamageText(OnEnemyDamaged evt)
         {
             var target = evt.Target;
             var damage = evt.Damage;

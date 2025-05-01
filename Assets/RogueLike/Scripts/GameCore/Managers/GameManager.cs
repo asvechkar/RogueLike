@@ -1,13 +1,21 @@
+using Reflex.Attributes;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.Game;
 using RogueLike.Scripts.GameCore.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RogueLike.Scripts.GameCore.Managers
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private GameOverWindow gameOverWindow;
+        [Inject] private GameOverWindow gameOverWindow;
+
+        private void StartGame(OnGameStarted evt)
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene("WorldScene");
+        }
         
         private void PauseGame(OnGamePaused evt)
         {
@@ -31,6 +39,7 @@ namespace RogueLike.Scripts.GameCore.Managers
             EventBus.Subscribe<OnGamePaused>(PauseGame);
             EventBus.Subscribe<OnGameResumed>(ResumeGame);
             EventBus.Subscribe<OnGameOver>(GameOver);
+            EventBus.Subscribe<OnGameStarted>(StartGame);
         }
         
         private void OnDisable()
@@ -38,6 +47,7 @@ namespace RogueLike.Scripts.GameCore.Managers
             EventBus.Unsubscribe<OnGamePaused>(PauseGame);
             EventBus.Unsubscribe<OnGameResumed>(ResumeGame);
             EventBus.Unsubscribe<OnGameOver>(GameOver);
+            EventBus.Unsubscribe<OnGameStarted>(StartGame);
         }
     }
 }
