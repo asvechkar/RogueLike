@@ -1,5 +1,6 @@
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.InputEvents;
+using RogueLike.Scripts.Events.Weapon;
 using RogueLike.Scripts.GameCore;
 using RogueLike.Scripts.GameCore.Pool;
 using UnityEngine;
@@ -92,7 +93,7 @@ namespace RogueLike.Scripts.Weapon.Bow
 
         private void StartThrowArrow(OnAttacked evt)
         {
-            if (gameObject.activeInHierarchy)
+            if (evt.WeaponType == WeaponType)
             {
                 animator.SetTrigger(Attack);
             }

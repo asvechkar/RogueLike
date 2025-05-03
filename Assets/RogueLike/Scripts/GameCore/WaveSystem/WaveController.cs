@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using Reflex.Attributes;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.Game;
+using RogueLike.Scripts.GameCore.Managers;
 using UnityEngine;
 
 namespace RogueLike.Scripts.GameCore.WaveSystem
@@ -8,6 +10,8 @@ namespace RogueLike.Scripts.GameCore.WaveSystem
     public class WaveController : MonoBehaviour, IActivate
     {
         [SerializeField] private List<Wave> waves = new();
+        
+        [Inject] private GameManager gameManager;
 
         private void Start()
         {
@@ -28,6 +32,7 @@ namespace RogueLike.Scripts.GameCore.WaveSystem
         {
             if (evt.WaveNumber >= waves.Count - 1)
             {
+                gameManager.GameOver();
                 EventBus.Invoke(new OnGameOver("You won!"));
             }
             else

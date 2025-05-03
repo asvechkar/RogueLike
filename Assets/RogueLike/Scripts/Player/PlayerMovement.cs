@@ -19,16 +19,20 @@ namespace RogueLike.Scripts.Player
         [SerializeField] private float speed;
         [SerializeField] private float runSpeed;
         [SerializeField] private Animator animator;
+        [SerializeField] private AudioClip moveSound;
         
         [Inject] private PlayerManager _playerManager;
         
         private Vector3 _movement;
         private bool _isRunning;
         private Vector2 _lastDirection;
+        private AudioSource _audioSource;
 
         private void Start()
         {
             _playerManager.SetSpeed(speed);
+            _audioSource = GetComponent<AudioSource>();
+            _audioSource.clip = moveSound;
         }
 
         private void Update()
@@ -77,6 +81,7 @@ namespace RogueLike.Scripts.Player
                 _lastDirection = new Vector2(_movement.x, _movement.y);
             }
             _movement = new Vector3(evt.Position.x, evt.Position.y, 0);
+            _audioSource.Play();
         }
 
         private void UpdateSpeed(OnPlayerSkillChanged evt)

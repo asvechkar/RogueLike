@@ -16,4 +16,4 @@ MonoBehaviour:
   damage: 8
   range: 7
   timeBetweenAttack: 0.7
-  duration: 0
+  duration: 6

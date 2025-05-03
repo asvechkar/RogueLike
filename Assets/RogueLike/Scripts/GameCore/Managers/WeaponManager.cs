@@ -41,5 +41,15 @@ namespace RogueLike.Scripts.GameCore.Managers
             
             return false;
         }
+
+        public float GetWeaponCooldown(WeaponType weaponType)
+        {
+            foreach (var weapon in weapons.Where(weapon => weapon.WeaponType == weaponType))
+            {
+                return weapon.GetCooldown();
+            }
+            
+            return 0;
+        }
     }
 }

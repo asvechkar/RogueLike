@@ -9,6 +9,7 @@ namespace RogueLike.Scripts.DI
         public void InstallBindings(ContainerBuilder builder)
         {
             builder.AddSingleton(typeof(GameManager));
+            builder.AddSingleton(typeof(SaveManager));
         }
     }
 }

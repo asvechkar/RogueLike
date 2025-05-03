@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Reflex.Attributes;
 using RogueLike.Scripts.Enemy;
 using RogueLike.Scripts.Events;
+using RogueLike.Scripts.Events.Weapon;
 using RogueLike.Scripts.GameCore.Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -52,6 +53,11 @@ namespace RogueLike.Scripts.Weapon
                 var randomDamage = Random.Range(_damage / 2f, _damage * 1.5f);
                 enemy.TakeDamage(randomDamage);
             }
+        }
+
+        public float GetCooldown()
+        {
+            return weaponStats[CurrentLevel - 1].TimeBetweenAttack;
         }
         
         public bool CanUpgrade()

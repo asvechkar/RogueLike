@@ -2,8 +2,10 @@ using System;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.Game;
 using RogueLike.Scripts.Events.InputEvents;
+using RogueLike.Scripts.Events.Weapon;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 namespace RogueLike.Scripts.GameCore.Managers
 {
@@ -14,10 +16,24 @@ namespace RogueLike.Scripts.GameCore.Managers
             EventBus.Invoke(new OnMoved(context.ReadValue<Vector2>()));
         }
 
-        public void OnAttack(InputAction.CallbackContext context)
+        public void OnWeaponClicked(InputAction.CallbackContext context)
         {
-            if (!context.performed) return;
-            EventBus.Invoke(new OnAttacked());
+            if (context.performed)
+            {
+                var control = (KeyControl)context.control;
+                var button = control.keyCode switch
+                {
+                    Key.Digit1 => 1,
+                    Key.Digit2 => 2,
+                    Key.Digit3 => 3,
+                    Key.Digit4 => 4,
+                    Key.Digit5 => 5,
+                    Key.Digit6 => 6,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+            
+                EventBus.Invoke(new OnWeaponActivate(button));
+            }
         }
 
         private void Start()

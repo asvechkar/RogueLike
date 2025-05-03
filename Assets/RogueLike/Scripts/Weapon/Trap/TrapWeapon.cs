@@ -1,6 +1,6 @@
-using System;
-using System.Collections;
 using RogueLike.Scripts.Events;
+using RogueLike.Scripts.Events.InputEvents;
+using RogueLike.Scripts.Events.Weapon;
 using RogueLike.Scripts.GameCore;
 using RogueLike.Scripts.GameCore.Pool;
 using UnityEngine;
@@ -12,8 +12,6 @@ namespace RogueLike.Scripts.Weapon.Trap
         [SerializeField] private ObjectPool trapPool;
         
         private Transform container;
-        private WaitForSeconds _timeBetweenAttacks;
-        private Coroutine _trapCoroutine;
 
         protected override void Start()
         {
@@ -34,44 +32,41 @@ namespace RogueLike.Scripts.Weapon.Trap
             WeaponManager.AddWeapon(this);
             Activate();
             EventBus.Subscribe<OnWeaponLevelUpdated>(ChangeLevel);
+            EventBus.Subscribe<OnAttacked>(SpawnTrap);
         }
 
         private void OnDisable()
         {
             WeaponManager.RemoveWeapon(this);
             EventBus.Unsubscribe<OnWeaponLevelUpdated>(ChangeLevel);
+            EventBus.Unsubscribe<OnAttacked>(SpawnTrap);
         }
 
         public void Activate()
         {
             container = GameObject.FindGameObjectWithTag("Weapon").transform;
             SetStats(0);
-            _trapCoroutine = StartCoroutine(SpawnTrap());
         }
 
         public void Deactivate()
         {
-            if (_trapCoroutine != null)
-                StopCoroutine(_trapCoroutine);
+            
         }
 
         protected override void SetStats(int value)
         {
             base.SetStats(CurrentLevel - 1);
-            _timeBetweenAttacks = new WaitForSeconds(WeaponStats[CurrentLevel - 1].TimeBetweenAttack);
         }
 
-        private IEnumerator SpawnTrap()
+        private void SpawnTrap(OnAttacked evt)
         {
-            while (true)
-            {
-                var trap = trapPool.GetFromPool();
-                trap.GetComponent<Trap>().Init(new ProjectileParams(0, 0, Damage, CurrentLevel));
-                trap.transform.SetParent(container);
-                trap.transform.position = transform.position;
-                
-                yield return _timeBetweenAttacks;
-            }
+            if (evt.WeaponType != WeaponType) return;
+            
+            var trap = trapPool.GetFromPool();
+            
+            trap.GetComponentInChildren<Trap>().Init(new ProjectileParams(0, 0, Damage, CurrentLevel));
+            trap.transform.SetParent(container);
+            trap.transform.position = transform.position;
         }
     }
 }

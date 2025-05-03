@@ -1,53 +1,46 @@
-using Reflex.Attributes;
-using RogueLike.Scripts.Events;
-using RogueLike.Scripts.Events.Game;
-using RogueLike.Scripts.GameCore.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace RogueLike.Scripts.GameCore.Managers
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager
     {
-        [Inject] private GameOverWindow gameOverWindow;
-
-        private void StartGame(OnGameStarted evt)
+        public void StartGame(GameDifficultyType difficulty)
         {
-            Time.timeScale = 1;
-            SceneManager.LoadScene("WorldScene");
+            RestartGame();
         }
         
-        private void PauseGame(OnGamePaused evt)
+        public void PauseGame()
         {
             Time.timeScale = 0;
         }
         
-        private void ResumeGame(OnGameResumed evt)
+        public void ResumeGame()
         {
             Time.timeScale = 1;
         }
 
-        private void GameOver(OnGameOver evt)
+        public void GameOver()
         {
             Time.timeScale = 0;
-            gameOverWindow.SetResult(evt.GameOverMessage);
-            gameOverWindow.gameObject.SetActive(true);
         }
 
-        private void OnEnable()
+        public void RestartGame()
         {
-            EventBus.Subscribe<OnGamePaused>(PauseGame);
-            EventBus.Subscribe<OnGameResumed>(ResumeGame);
-            EventBus.Subscribe<OnGameOver>(GameOver);
-            EventBus.Subscribe<OnGameStarted>(StartGame);
+            Time.timeScale = 1;
+            SceneManager.LoadScene("Game");
         }
-        
-        private void OnDisable()
+
+        public void ExitToMainMenu()
         {
-            EventBus.Unsubscribe<OnGamePaused>(PauseGame);
-            EventBus.Unsubscribe<OnGameResumed>(ResumeGame);
-            EventBus.Unsubscribe<OnGameOver>(GameOver);
-            EventBus.Unsubscribe<OnGameStarted>(StartGame);
+            Time.timeScale = 1;
+            SceneManager.LoadScene("MainMenu");
+        }
+
+        public void LoadGame()
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene("Game");
         }
     }
 }

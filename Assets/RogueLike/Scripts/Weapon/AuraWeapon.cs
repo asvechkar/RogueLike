@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using RogueLike.Scripts.Enemy;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.Enemy;
+using RogueLike.Scripts.Events.InputEvents;
+using RogueLike.Scripts.Events.Weapon;
 using RogueLike.Scripts.GameCore;
 using UnityEngine;
 
@@ -12,15 +14,17 @@ namespace RogueLike.Scripts.Weapon
     {
         [SerializeField] private Transform targetContainer;
         [SerializeField] private CircleCollider2D weaponCollider;
+        [SerializeField] private SpriteRenderer spriteRenderer;
 
         private readonly List<EnemyHealth> _enemiesInZone = new();
-        private WaitForSeconds _timeBetweenAttacks;
         private Coroutine _auraCoroutine;
         private float _range;
 
         protected override void Start()
         {
             WeaponType = WeaponType.Aura;
+            spriteRenderer.enabled = false;
+            weaponCollider.enabled = false;
             Activate();
         }
 
@@ -29,6 +33,7 @@ namespace RogueLike.Scripts.Weapon
             WeaponManager.AddWeapon(this);
             EventBus.Subscribe<OnEnemyDead>(RemoveDeadEnemies);
             EventBus.Subscribe<OnWeaponLevelUpdated>(ChangeLevel);
+            EventBus.Subscribe<OnAttacked>(CheckZone);
         }
 
         private void OnDisable()
@@ -36,6 +41,7 @@ namespace RogueLike.Scripts.Weapon
             WeaponManager.RemoveWeapon(this);
             EventBus.Unsubscribe<OnEnemyDead>(RemoveDeadEnemies);
             EventBus.Unsubscribe<OnWeaponLevelUpdated>(ChangeLevel);
+            EventBus.Unsubscribe<OnAttacked>(CheckZone);
         }
         
         private void ChangeLevel(OnWeaponLevelUpdated evt)
@@ -70,17 +76,27 @@ namespace RogueLike.Scripts.Weapon
         protected override void SetStats(int value)
         {
             base.SetStats(value);
-            _timeBetweenAttacks = new WaitForSeconds(WeaponStats[CurrentLevel - 1].TimeBetweenAttack);
             _range = WeaponStats[CurrentLevel - 1].Range;
             targetContainer.transform.localScale = Vector3.one * _range;
             weaponCollider.radius = _range / 3f;
         }
 
-        private IEnumerator CheckZone()
+        private void CheckZone(OnAttacked evt)
         {
-            while (true)
+            if (evt.WeaponType != WeaponType) return;
+            
+            spriteRenderer.enabled = true;
+            weaponCollider.enabled = true;
+
+            StartCoroutine(Attack());
+        }
+
+        private IEnumerator Attack()
+        {
+            var duration = WeaponStats[CurrentLevel].Duration;
+            while (duration > 0)
             {
-                for (int i = 0; i < _enemiesInZone.Count; i++)
+                for (var i = 0; i < _enemiesInZone.Count; i++)
                 {
                     if (CurrentLevel >= 5 && CurrentLevel <= 8)
                     {
@@ -93,21 +109,22 @@ namespace RogueLike.Scripts.Weapon
                     _enemiesInZone[i].TakeDamage(_damage);
                 }
                 
-                yield return _timeBetweenAttacks;
+                duration -= Time.deltaTime;
+                
+                yield return null;
             }
+            
+            spriteRenderer.enabled = false;
+            weaponCollider.enabled = false;
         }
 
         public void Activate()
         {
             SetStats(0);
-            _auraCoroutine = StartCoroutine(CheckZone());
         }
 
         public void Deactivate()
         {
-            if (_auraCoroutine == null) return;
-            
-            StopCoroutine(_auraCoroutine);
         }
     }
 }

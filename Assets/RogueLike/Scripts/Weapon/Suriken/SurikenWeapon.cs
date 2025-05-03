@@ -1,5 +1,6 @@
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.InputEvents;
+using RogueLike.Scripts.Events.Weapon;
 using RogueLike.Scripts.GameCore;
 using RogueLike.Scripts.GameCore.Pool;
 using UnityEngine;
@@ -67,7 +68,7 @@ namespace RogueLike.Scripts.Weapon.Suriken
 
         private void SpawnSuriken(OnAttacked evt)
         {
-            if (!gameObject.activeInHierarchy) return;
+            if (evt.WeaponType != WeaponType) return;
             
             var enemiesInRange = Physics2D.OverlapCircleAll(transform.position, _range, layerMask);
 

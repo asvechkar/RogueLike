@@ -1,7 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using RogueLike.Scripts.Events;
+using RogueLike.Scripts.Events.InputEvents;
+using RogueLike.Scripts.Events.Weapon;
 using RogueLike.Scripts.GameCore;
 using RogueLike.Scripts.GameCore.Pool;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace RogueLike.Scripts.Weapon.Fireball
     {
         [SerializeField] private ObjectPool objectPool;
         
-        private WaitForSeconds _interval, _timeBetweenAttack;
+        private WaitForSeconds _interval;
         private float _rotationSpeed, _range;
         private Coroutine _attackCoroutine;
         private readonly List<GameObject> _fireballList = new();
@@ -26,26 +27,20 @@ namespace RogueLike.Scripts.Weapon.Fireball
         {
             WeaponType = WeaponType.Fireball;
             base.Start();
-            SetupWeapon();
-            Activate();
         }
 
         private void OnEnable()
         {
             WeaponManager.AddWeapon(this);
             EventBus.Subscribe<OnWeaponLevelUpdated>(ChangeLevel);
+            EventBus.Subscribe<OnAttacked>(RunFireball);
         }
 
         private void OnDisable()
         {
             WeaponManager.RemoveWeapon(this);
             EventBus.Unsubscribe<OnWeaponLevelUpdated>(ChangeLevel);
-        }
-
-        protected override void LevelUp()
-        {
-            base.LevelUp();
-            SetupWeapon();
+            EventBus.Unsubscribe<OnAttacked>(RunFireball);
         }
 
         protected override void SetStats(int value)
@@ -53,7 +48,6 @@ namespace RogueLike.Scripts.Weapon.Fireball
             base.SetStats(value);
             _rotationSpeed = WeaponStats[CurrentLevel - 1].Speed;
             _range = WeaponStats[CurrentLevel - 1].Range;
-            _timeBetweenAttack = new WaitForSeconds(WeaponStats[CurrentLevel - 1].TimeBetweenAttack);
         }
         
         private void ChangeLevel(OnWeaponLevelUpdated evt)
@@ -121,26 +115,45 @@ namespace RogueLike.Scripts.Weapon.Fireball
 
         private IEnumerator WeaponLifeCycle()
         {
-            while (true)
+            var duration = WeaponStats[CurrentLevel - 1].Duration;
+            
+            while (duration > 0)
             {
                 for (var i = 0; i < _fireballList.Count; i++)
                 {
                     _fireballList[i].SetActive(!_fireballList[i].activeSelf);
                 }
-                yield return _timeBetweenAttack;
+                duration -= Time.deltaTime;
+                yield return null;
             }
+            
+            Deactivate();
+        }
+
+        private void RunFireball(OnAttacked evt)
+        {
+            if (evt.WeaponType != WeaponType) return;
+            
+            Activate();
         }
 
         public void Activate()
         {
+            Debug.Log("Fireball Activate");
+            SetupWeapon();
             _attackCoroutine = StartCoroutine(WeaponLifeCycle());
         }
 
         public void Deactivate()
         {
             if (_attackCoroutine == null) return;
-            
+            Debug.Log("Fireball Deactivate");
             StopCoroutine(_attackCoroutine);
+            foreach (var current in _fireballList)
+            {
+                current.SetActive(false);
+            }
+            _fireballList.Clear();
         }
     }
 }

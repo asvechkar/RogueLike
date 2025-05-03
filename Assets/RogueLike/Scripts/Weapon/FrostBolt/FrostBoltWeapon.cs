@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.InputEvents;
+using RogueLike.Scripts.Events.Weapon;
 using RogueLike.Scripts.GameCore;
 using RogueLike.Scripts.GameCore.Pool;
 using UnityEngine;
@@ -67,7 +68,7 @@ namespace RogueLike.Scripts.Weapon.FrostBolt
 
         private void StartThrowFrostBolt(OnAttacked evt)
         {
-            if (!gameObject.activeInHierarchy) return;
+            if (evt.WeaponType != WeaponType) return;
             
             for (var i = 0; i < shootPoints.Count; i++)
             {

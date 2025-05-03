@@ -2,6 +2,7 @@ using System.Globalization;
 using Reflex.Attributes;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.Player;
+using RogueLike.Scripts.Events.Weapon;
 using RogueLike.Scripts.GameCore.Managers;
 using TMPro;
 using UnityEngine;
