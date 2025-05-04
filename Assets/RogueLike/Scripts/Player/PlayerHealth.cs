@@ -32,8 +32,9 @@ namespace RogueLike.Scripts.Player
 
         private void Start()
         {
-            _playerManager.SetMaxHealth(MaxHealth);
-            _playerManager.SetHealPoints(_regenerationValue);
+            SetMaxHealth(_playerManager.MaxHealth);
+           
+            _regenerationValue = _playerManager.HealPoints;
             
             EventBus.Invoke(new OnPlayerHealthChanged(CurrentHealth, MaxHealth, _regenerationValue));
             StartCoroutine(Regenerate());

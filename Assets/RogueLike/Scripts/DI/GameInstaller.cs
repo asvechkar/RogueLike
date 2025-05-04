@@ -9,12 +9,14 @@ namespace RogueLike.Scripts.DI
 {
     public class GameInstaller : MonoBehaviour, IInstaller
     {
+        [SerializeField] private ExperienceManager experienceManager;
         [SerializeField] private SkillManager skillManager;
         [SerializeField] private WeaponManager weaponManager;
         [SerializeField] private ScoreManager scoreManager;
         [SerializeField] private CoinManager coinManager;
         [SerializeField] private PlayerManager playerManager;
         [SerializeField] private SoundFxManager soundFxManager;
+        
         [SerializeField] private LootSpawner lootSpawner;
         [SerializeField] private DamageTextSpawner damageTextSpawner;
         [SerializeField] private UpgradeWindow upgradeWindow;
@@ -23,12 +25,14 @@ namespace RogueLike.Scripts.DI
         
         public void InstallBindings(ContainerBuilder builder)
         {
+            builder.AddSingleton(experienceManager, typeof(ExperienceManager));
             builder.AddSingleton(skillManager, typeof(SkillManager));
             builder.AddSingleton(weaponManager, typeof(WeaponManager));
             builder.AddSingleton(scoreManager, typeof(ScoreManager));
             builder.AddSingleton(coinManager, typeof(CoinManager));
             builder.AddSingleton(playerManager, typeof(PlayerManager));
             builder.AddSingleton(soundFxManager, typeof(SoundFxManager));
+            
             builder.AddSingleton(lootSpawner, typeof(LootSpawner));
             builder.AddSingleton(damageTextSpawner, typeof(DamageTextSpawner));
             builder.AddSingleton(pauseWindow, typeof(PauseWindow));

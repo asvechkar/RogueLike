@@ -15,7 +15,7 @@ MonoBehaviour:
   cost: 1
   title: Speed
   description: +1
-  icon: {fileID: 3458462942587391926, guid: 39e37a48b9760467182a7c5514dea43e, type: 3}
+  icon: {fileID: 8948106535171680033, guid: dff92b4778df647e09ebecfe34b0f4ed, type: 3}
   upgradeType: 0
   weaponType: 0
   playerSkillType: 1

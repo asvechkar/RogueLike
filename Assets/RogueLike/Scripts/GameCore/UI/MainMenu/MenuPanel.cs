@@ -7,6 +7,7 @@ namespace RogueLike.Scripts.GameCore.UI.MainMenu
     public class MenuPanel : MonoBehaviour
     {
         [Inject] private GameManager gameManager;
+        [Inject] private LoadManager loadManager;
         
         public void OnEasyClicked()
         {
@@ -30,7 +31,7 @@ namespace RogueLike.Scripts.GameCore.UI.MainMenu
         
         public void OnLoadGameClicked()
         {
-            gameManager.LoadGame();
+            gameManager.LoadGame(loadManager.LoadGame());
         }
     }
 }

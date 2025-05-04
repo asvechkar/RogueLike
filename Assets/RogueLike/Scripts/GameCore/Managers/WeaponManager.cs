@@ -7,24 +7,24 @@ namespace RogueLike.Scripts.GameCore.Managers
 {
     public class WeaponManager : MonoBehaviour
     {
-        private List<BaseWeapon> weapons = new();
+        public List<BaseWeapon> Weapons { get; } = new();
 
         public void AddWeapon(BaseWeapon weapon)
         {
-            weapons.Add(weapon);
+            Weapons.Add(weapon);
         }
 
         public void RemoveWeapon(BaseWeapon weapon)
         {
-            if (weapons.Contains(weapon))
+            if (Weapons.Contains(weapon))
             {
-                weapons.Remove(weapon);
+                Weapons.Remove(weapon);
             }
         }
 
         public int GetWeaponLevel(WeaponType weaponType)
         {
-            foreach (var weapon in weapons.Where(weapon => weapon.WeaponType == weaponType))
+            foreach (var weapon in Weapons.Where(weapon => weapon.WeaponType == weaponType))
             {
                 return weapon.CurrentLevel;
             }
@@ -34,7 +34,7 @@ namespace RogueLike.Scripts.GameCore.Managers
 
         public bool CanUpgrade(WeaponType weaponType)
         {
-            foreach (var weapon in weapons.Where(weapon => weapon.WeaponType == weaponType))
+            foreach (var weapon in Weapons.Where(weapon => weapon.WeaponType == weaponType))
             {
                 return weapon.CurrentLevel < weapon.MaxLevel;
             }
@@ -44,7 +44,7 @@ namespace RogueLike.Scripts.GameCore.Managers
 
         public float GetWeaponCooldown(WeaponType weaponType)
         {
-            foreach (var weapon in weapons.Where(weapon => weapon.WeaponType == weaponType))
+            foreach (var weapon in Weapons.Where(weapon => weapon.WeaponType == weaponType))
             {
                 return weapon.GetCooldown();
             }

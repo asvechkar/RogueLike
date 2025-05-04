@@ -15,6 +15,7 @@ MonoBehaviour:
   cost: 1
   title: Suriken
   description: +1 lvl
-  icon: {fileID: 8376472327645513292, guid: bc211c3be3ed84e209b56d3195331efc, type: 3}
+  icon: {fileID: -2248273014285675650, guid: d703b627e703c4c06ae01bf704fa5836, type: 3}
   upgradeType: 1
   weaponType: 3
+  playerSkillType: 0

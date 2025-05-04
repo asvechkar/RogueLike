@@ -1,6 +1,8 @@
+using Reflex.Attributes;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.Game;
 using RogueLike.Scripts.Events.Player;
+using RogueLike.Scripts.GameCore.SaveSystem;
 using TMPro;
 using UnityEngine;
 
@@ -13,6 +15,15 @@ namespace RogueLike.Scripts.GameCore.UI.Game
         [SerializeField] private TextMeshProUGUI coins;
         [SerializeField] private TextMeshProUGUI waves;
         
+        [Inject] private readonly GameData _gameData;
+
+        private void Start()
+        {
+            playerLevel.text = $"Level: {_gameData.playerData.level}";
+            playerScore.text = $"Score: {_gameData.score}";
+            coins.text = $"Coins: {_gameData.coins}";
+        }
+
         private void UpdatePlayerLevel(OnPlayerLevelChanged evt)
         {
             playerLevel.text = $"Level: {evt.Level}";

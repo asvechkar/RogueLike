@@ -1,6 +1,9 @@
 using System.Collections;
+using Reflex.Attributes;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.Player;
+using RogueLike.Scripts.GameCore;
+using RogueLike.Scripts.GameCore.Managers;
 using UnityEngine;
 
 namespace RogueLike.Scripts.Enemy
@@ -10,23 +13,37 @@ namespace RogueLike.Scripts.Enemy
         private static readonly int Horizontal = Animator.StringToHash("Horizontal");
         private static readonly int Vertical = Animator.StringToHash("Vertical");
         
-        [SerializeField] private float speed;
+        [SerializeField] private float speed = 1f;
         [SerializeField] private Animator animator;
         [SerializeField] private float freezeTimer;
+        
+        [Inject] private GameManager _gameManager;
         
         private Vector3 _direction;
         
         private float _originalSpeed;
 
-        private void Awake()
+        private void Start()
         {
+            switch (_gameManager.Difficulty)
+            {
+                case GameDifficultyType.Easy:
+                default:
+                    speed *= 1;
+                    break;
+                case GameDifficultyType.Normal:
+                    speed *= 2;
+                    break;
+                case GameDifficultyType.Hard:
+                    speed *= 3;
+                    break;
+            }
             _originalSpeed = speed;
         }
 
         private void OnEnable()
         {
             EventBus.Subscribe<OnPlayerMoved>(Move);
-            speed = _originalSpeed;
         }
 
         private void OnDisable()

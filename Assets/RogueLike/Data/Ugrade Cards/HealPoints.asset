@@ -15,7 +15,7 @@ MonoBehaviour:
   cost: 1
   title: Heal
   description: +1 Heal
-  icon: {fileID: 7448666187132552118, guid: 39e37a48b9760467182a7c5514dea43e, type: 3}
+  icon: {fileID: 6260044087427215569, guid: dff92b4778df647e09ebecfe34b0f4ed, type: 3}
   upgradeType: 0
   weaponType: 0
   playerSkillType: 2

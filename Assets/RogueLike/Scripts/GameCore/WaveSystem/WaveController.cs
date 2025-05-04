@@ -3,6 +3,7 @@ using Reflex.Attributes;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.Game;
 using RogueLike.Scripts.GameCore.Managers;
+using RogueLike.Scripts.GameCore.UI.Game;
 using UnityEngine;
 
 namespace RogueLike.Scripts.GameCore.WaveSystem
@@ -12,6 +13,8 @@ namespace RogueLike.Scripts.GameCore.WaveSystem
         [SerializeField] private List<Wave> waves = new();
         
         [Inject] private GameManager gameManager;
+        [Inject] private GameOverWindow gameOverWindow;
+        [Inject] private SaveManager saveManager;
 
         private void Start()
         {
@@ -33,6 +36,10 @@ namespace RogueLike.Scripts.GameCore.WaveSystem
             if (evt.WaveNumber >= waves.Count - 1)
             {
                 gameManager.GameOver();
+                saveManager.SaveGame();
+                gameOverWindow.SetResult("You won!");
+                gameOverWindow.gameObject.SetActive(true);
+                
                 EventBus.Invoke(new OnGameOver("You won!"));
             }
             else

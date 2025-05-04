@@ -15,6 +15,7 @@ MonoBehaviour:
   cost: 1
   title: Frostbolt
   description: +1 lvl
-  icon: {fileID: 6032595671685482921, guid: bc211c3be3ed84e209b56d3195331efc, type: 3}
+  icon: {fileID: -299690340437171572, guid: d703b627e703c4c06ae01bf704fa5836, type: 3}
   upgradeType: 1
   weaponType: 2
+  playerSkillType: 0

@@ -1,7 +1,11 @@
+using System;
 using System.Collections;
+using Reflex.Attributes;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.Enemy;
+using RogueLike.Scripts.GameCore;
 using RogueLike.Scripts.GameCore.Health;
+using RogueLike.Scripts.GameCore.Managers;
 using UnityEngine;
 
 namespace RogueLike.Scripts.Enemy
@@ -10,6 +14,25 @@ namespace RogueLike.Scripts.Enemy
     {
         private readonly WaitForSeconds _damageTick = new(1f);
         
+        [Inject] private GameManager _gameManager;
+
+        private void Start()
+        {
+            switch (_gameManager.Difficulty)
+            {
+                case GameDifficultyType.Easy:
+                    default:
+                    SetMaxHealth(MaxHealth * 1);
+                    break;
+                case GameDifficultyType.Normal:
+                    SetMaxHealth(MaxHealth * 2);
+                    break;
+                case GameDifficultyType.Hard:
+                    SetMaxHealth(MaxHealth * 3);
+                    break;
+            }
+        }
+
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
@@ -32,7 +55,7 @@ namespace RogueLike.Scripts.Enemy
                 yield break;
             }
 
-            float tickDamage = damage / 3f;
+            var tickDamage = damage / 3f;
             if (tickDamage < 1f)
             {
                 tickDamage = 1f;

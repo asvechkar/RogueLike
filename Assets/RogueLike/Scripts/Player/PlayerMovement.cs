@@ -30,7 +30,7 @@ namespace RogueLike.Scripts.Player
 
         private void Start()
         {
-            _playerManager.SetSpeed(speed);
+            speed = _playerManager.Speed;
             _audioSource = GetComponent<AudioSource>();
             _audioSource.clip = moveSound;
         }

@@ -15,6 +15,7 @@ MonoBehaviour:
   cost: 1
   title: Fireball
   description: +1 lvl
-  icon: {fileID: 4010417193061033496, guid: bc211c3be3ed84e209b56d3195331efc, type: 3}
+  icon: {fileID: -2978653956524333172, guid: d703b627e703c4c06ae01bf704fa5836, type: 3}
   upgradeType: 1
   weaponType: 0
+  playerSkillType: 0

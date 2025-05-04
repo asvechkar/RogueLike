@@ -10,6 +10,7 @@ namespace RogueLike.Scripts.DI
         {
             builder.AddSingleton(typeof(GameManager));
             builder.AddSingleton(typeof(SaveManager));
+            builder.AddSingleton(typeof(LoadManager));
         }
     }
 }

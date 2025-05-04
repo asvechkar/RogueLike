@@ -1,3 +1,5 @@
+using Reflex.Core;
+using RogueLike.Scripts.GameCore.SaveSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,8 +7,10 @@ namespace RogueLike.Scripts.GameCore.Managers
 {
     public class GameManager
     {
+        public GameDifficultyType Difficulty { get; private set; }
         public void StartGame(GameDifficultyType difficulty)
         {
+            Difficulty = difficulty;
             RestartGame();
         }
         
@@ -28,7 +32,9 @@ namespace RogueLike.Scripts.GameCore.Managers
         public void RestartGame()
         {
             Time.timeScale = 1;
-            SceneManager.LoadScene("Game");
+            var gameData = new GameData();
+            var scene = SceneManager.LoadScene("Game", new LoadSceneParameters(LoadSceneMode.Single));
+            ReflexSceneManager.PreInstallScene(scene, builder => builder.AddSingleton(gameData));
         }
 
         public void ExitToMainMenu()
@@ -37,10 +43,12 @@ namespace RogueLike.Scripts.GameCore.Managers
             SceneManager.LoadScene("MainMenu");
         }
 
-        public void LoadGame()
+        public void LoadGame(GameData gameData)
         {
             Time.timeScale = 1;
-            SceneManager.LoadScene("Game");
+            
+            var scene = SceneManager.LoadScene("Game", new LoadSceneParameters(LoadSceneMode.Single));
+            ReflexSceneManager.PreInstallScene(scene, builder => builder.AddSingleton(gameData));
         }
     }
 }

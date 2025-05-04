@@ -1,21 +1,31 @@
 using System;
+using Reflex.Attributes;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.Loot;
 using RogueLike.Scripts.Events.Player;
+using RogueLike.Scripts.GameCore.SaveSystem;
 using UnityEngine;
 
 namespace RogueLike.Scripts.GameCore.Managers
 {
     public class ExperienceManager : MonoBehaviour
     {
-        private int _currentExperience = 0;
+        private int _currentExperience;
         private int _experienceToUp = 5;
-        private int _currentLevel = 1;
+
+        public int CurrentLevel { get; private set; } = 1;
+
+        [Inject] private readonly GameData _gameData;
+
+        private void Awake()
+        {
+            CurrentLevel = _gameData.playerData.level;
+        }
 
         private void OnEnable()
         {
             EventBus.Subscribe<OnPickupExperience>(Add);
-            EventBus.Invoke(new OnPlayerLevelChanged(_currentLevel));
+            EventBus.Invoke(new OnPlayerLevelChanged(CurrentLevel));
         }
 
         private void OnDisable()
@@ -42,9 +52,9 @@ namespace RogueLike.Scripts.GameCore.Managers
         private void LevelUp()
         {
             _currentExperience = 0;
-            _currentLevel++;
+            CurrentLevel++;
 
-            switch (_currentLevel)
+            switch (CurrentLevel)
             {
                 case <= 20:
                     _experienceToUp += 10;
@@ -60,7 +70,7 @@ namespace RogueLike.Scripts.GameCore.Managers
                     break;
             }
             
-            EventBus.Invoke(new OnPlayerLevelChanged(_currentLevel));
+            EventBus.Invoke(new OnPlayerLevelChanged(CurrentLevel));
         }
     }
 }

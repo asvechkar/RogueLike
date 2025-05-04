@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abee70af027d4ab4a602f31eef523486, type: 3}
   m_Name: Aura
   m_EditorClassIdentifier: 
-  id: 5
   cost: 1
   title: Aura
   description: +1 lvl
-  icon: {fileID: 7056553801549386521, guid: bc211c3be3ed84e209b56d3195331efc, type: 3}
+  icon: {fileID: -2696506250795634678, guid: d703b627e703c4c06ae01bf704fa5836, type: 3}
   upgradeType: 1
   weaponType: 1
+  playerSkillType: 0

@@ -1,6 +1,8 @@
 using System;
+using Reflex.Attributes;
 using RogueLike.Scripts.Events;
 using RogueLike.Scripts.Events.Player;
+using RogueLike.Scripts.GameCore.SaveSystem;
 using UnityEngine;
 
 namespace RogueLike.Scripts.GameCore.Managers
@@ -9,6 +11,13 @@ namespace RogueLike.Scripts.GameCore.Managers
     {
         public int SkillPoints { get; private set; }
         
+        [Inject] private readonly GameData _gameData;
+
+        private void Awake()
+        {
+            SkillPoints = _gameData.skillPoints;
+        }
+
         public void AddSkillPoints(int amount)
         {
             SkillPoints += amount;

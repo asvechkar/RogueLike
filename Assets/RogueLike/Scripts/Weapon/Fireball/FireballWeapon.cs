@@ -69,12 +69,10 @@ namespace RogueLike.Scripts.Weapon.Fireball
             switch (CurrentLevel)
             {
                 case >=0 and <= 4:
-                    Debug.Log($"Fireball Level 4 {CurrentLevel}");
                     AddFireball(new Vector3(_range, 0, 0));
                     break;
                 case >=5 and <= 6:
                 {
-                    Debug.Log($"Fireball Level 6 {CurrentLevel}");
                     for (var i = 0; i < 2; i++)
                     {
                         var angleOffset = 360f / 2 * i;
@@ -88,7 +86,6 @@ namespace RogueLike.Scripts.Weapon.Fireball
                 }
                 default:
                 {
-                    Debug.Log($"Fireball Level {CurrentLevel}");
                     for(var i = 0; i < 3; i++)
                     {
                         var angleOffset = 360f / 3 * i;
